@@ -59,45 +59,32 @@ const CryptoController = {
 
   updateCrypto: async (req, res) => {
     try {
-      const crypto = await Crypto.findByPk(req.params.id);
-
-      const {
-        name,
-        type,
-        usersCount,
-        quantity,
-        abbreviation,
-        autor,
-        valueinDolar,
-      } = req.body;
+      const crypto = Money.findByPk(req.params.id);
+      const { name, usersCount, quantity, abbreviation, autor, valueinDolar } =
+        req.body;
       if (crypto) {
         await crypto.update({
           name,
-          type,
           usersCount,
           quantity,
           abbreviation,
           autor,
           valueinDolar,
         });
-
-        res.json({});
       } else {
         res.status(404).json({ message: "Crypto not found" });
       }
     } catch (err) {
-      console.log(err);
-
       res.status(500).json({ message: "Error on update the crypto", err: err });
     }
   },
 
   deleteCrypto: async (req, res) => {
     try {
-      const crypto = await Crypto.findByPk(req.params.id);
+      const crypto = Crypto.findByPk(req.params.id);
       if (crypto) {
         await crypto.destroy();
-        res.status(204).json({});
+        res.status(204).json();
       } else {
         res.status(404).json({ message: "Crypto not fount" });
       }

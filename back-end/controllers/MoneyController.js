@@ -4,10 +4,8 @@ import RealMoney from "../models/RealMoney.js";
 const MoneyController = {
   getAllMoney: async (req, res) => {
     try {
-      const [cryptos, realMoneys] = await Promise.all([
-        Crypto.findAll(),
-        RealMoney.findAll(),
-      ]);
+      const [cryptos, realMoneys] = await Promise.all;
+      [Crypto.findAll(), RealMoney.findAll()];
 
       const moneys = [...cryptos, ...realMoneys];
       res.status(200).json(moneys);
@@ -17,26 +15,19 @@ const MoneyController = {
         .json({ message: "erro ao buscar cryptos", err: `${err}` });
     }
   },
-  getMoneyById: async (req, res) => {
+  getById: async (req, res) => {
     try {
-      const { id } = req.params;
-
-      // Fazer as duas consultas simultaneamente
-      const [crypto, realMoney] = await Promise.all([
-        Crypto.findByPk(id),
-        RealMoney.findByPk(id),
-      ]);
-
-      if (crypto) {
-        return res.json(crypto);
-      } else if (realMoney) {
-        return res.json(realMoney);
+      const money = Money.findByPk(req.params.id);
+      if (money) {
+        res.json(money);
+      } else {
+        res.status(404).json({
+          message: "Money not found",
+        });
       }
-
-      res.status(404).json({ message: "Money not found" });
     } catch (err) {
       res.status(500).json({
-        message: "Error on getting money by id",
+        message: "Error on found money by id",
         err: err,
       });
     }

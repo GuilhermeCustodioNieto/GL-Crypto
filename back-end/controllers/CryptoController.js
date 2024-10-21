@@ -1,4 +1,4 @@
-import Crypto from "../models/Crypto.js";
+import Crypto from "../models/cryptos/Crypto.js";
 
 const CryptoController = {
   getAllCryptos: async (req, res) => {
@@ -30,19 +30,12 @@ const CryptoController = {
   },
   createNewCrypto: async (req, res) => {
     try {
-      const {
-        name,
-        usersCount,
-        quantity,
-        abbreviation,
-        author,
-        valueInDollar,
-      } = req.body;
-      const type = "Crypto";
+      const { name, type, quantity, abbreviation, author, valueInDollar } =
+        req.body;
+
       const newMoney = await Crypto.create({
         name,
         type,
-        usersCount,
         quantity,
         abbreviation,
         author,

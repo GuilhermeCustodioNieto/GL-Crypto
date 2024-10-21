@@ -2,6 +2,7 @@ import express from "express";
 import sequelize from "./config/connection.js";
 import UserRoutes from "./routes/UserRoutes.js";
 import MoneyRoutes from "./routes/MoneyRoutes.js";
+import CryptoWalletRoutes from "./routes/CryptoWalletRoutes.js";
 
 const app = express();
 const PORT = 3000;
@@ -19,6 +20,7 @@ sequelize
 
 app.use("/users", UserRoutes);
 app.use("/money", MoneyRoutes);
+app.use("/crypto-wallet", CryptoWalletRoutes);
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);

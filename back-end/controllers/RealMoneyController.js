@@ -1,4 +1,4 @@
-import RealMoney from "../models/RealMoney.js";
+import RealMoney from "../models/cryptos/RealMoney.js";
 
 const RealMoneyController = {
   findAllRealMoney: async (req, res) => {

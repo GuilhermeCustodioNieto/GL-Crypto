@@ -10,9 +10,9 @@ MoneyRoutes.post("/cryptos", CryptoController.createNewCrypto);
 MoneyRoutes.put("/cryptos/:id", CryptoController.updateCrypto);
 MoneyRoutes.delete("/cryptos/:id", CryptoController.deleteCrypto);
 
-MoneyRoutes.get("/realMoney", RealMoneyController.findAllRealMoney);
-MoneyRoutes.get("/realMoney/:id", RealMoneyController.findById);
-MoneyRoutes.post("/realMoney", RealMoneyController.createRealMoney);
+MoneyRoutes.get("/realMoney", RealMoneyController.getAllRealMoney);
+MoneyRoutes.get("/realMoney/:id", RealMoneyController.getById);
+MoneyRoutes.post("/realMoney", RealMoneyController.createNewRealMoney);
 MoneyRoutes.put("/realMoney/:id", RealMoneyController.updateRealMoney);
 MoneyRoutes.delete("/realMoney/:id", RealMoneyController.deleteRealMoney);
 

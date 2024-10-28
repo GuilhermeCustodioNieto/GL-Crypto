@@ -1,5 +1,6 @@
 import sequelize from "../config/connection.js";
 import { DataTypes, Model } from "sequelize";
+import Money from "./cryptos/Money.js";
 
 class CryptoWallet extends Model {}
 
@@ -15,6 +16,15 @@ CryptoWallet.init(
     },
     totalInDollar: {
       type: DataTypes.DECIMAL,
+      allowNull: false,
+    },
+    moneyTypeId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: Money,
+        key: "id",
+      },
+      allowNull: false,
     },
   },
   {

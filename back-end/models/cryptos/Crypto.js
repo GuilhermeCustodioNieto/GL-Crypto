@@ -1,24 +1,17 @@
-import { BIGINT, DataTypes, Model } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/connection.js";
 
 class Crypto extends Model {}
 
 Crypto.init(
   {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    usersCount: {
-      type: DataTypes.BIGINT,
-      allowNull: false,
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
     },
     quantity: {
-      type: BIGINT,
-      allowNull: false,
-    },
-    abbreviation: {
-      type: DataTypes.STRING,
+      type: DataTypes.BIGINT,
       allowNull: false,
     },
     author: {
@@ -33,7 +26,8 @@ Crypto.init(
   {
     sequelize,
     modelName: "Crypto",
-    discriminator: "type",
+    tableName: "cryptos",
+    timestamps: true,
   }
 );
 

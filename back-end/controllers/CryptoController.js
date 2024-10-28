@@ -1,9 +1,12 @@
 import Crypto from "../models/cryptos/Crypto.js";
+import Money from "../models/cryptos/Money.js";
 
 const CryptoController = {
   getAllCryptos: async (req, res) => {
     try {
-      const cryptos = await Crypto.findAll();
+      const cryptos = await Crypto.findAll({
+        include: Money,
+      });
 
       res.json(cryptos);
     } catch (err) {
@@ -30,52 +33,58 @@ const CryptoController = {
   },
   createNewCrypto: async (req, res) => {
     try {
-      const { name, type, quantity, abbreviation, author, valueInDollar } =
-        req.body;
+      const { name, quantity, abbreviation, author, valueInDollar } = req.body;
 
-      const newMoney = await Crypto.create({
-        name,
-        type,
+      const newCrypto = await Crypto.create({
         quantity,
-        abbreviation,
         author,
         valueInDollar,
       });
 
-      res.status(201).json(newMoney);
+      const newMoney = await Money.create({
+        name,
+        abbreviation,
+        type: "Crypto",
+        cryptoId: newCrypto.id,
+      });
+
+      res.status(201).json({
+        crypto: newCrypto,
+        money: newMoney,
+      });
     } catch (err) {
       res
         .status(500)
         .json({ message: "Error on creation of the crypto", err: err });
+      console.log(err);
     }
   },
 
   updateCrypto: async (req, res) => {
     try {
-      const crypto = Money.findByPk(req.params.id);
-      const { name, usersCount, quantity, abbreviation, autor, valueinDolar } =
-        req.body;
-      if (crypto) {
-        await crypto.update({
-          name,
-          usersCount,
-          quantity,
-          abbreviation,
-          autor,
-          valueinDolar,
-        });
+      const crypto = Crypto.findByPk(req.params.id);
+      const { name, quantity, abbreviation, author, valueInDollar } = req.body;
+
+      await crypto.update({ quantity, author, valueInDollar });
+
+      const money = await Money.findOne({ where: { cryptoId: crypto.id } });
+      if (money) {
+        await money.update({ name, abbreviation });
+        res.json({ crypto, money });
       } else {
         res.status(404).json({ message: "Crypto not found" });
       }
     } catch (err) {
       res.status(500).json({ message: "Error on update the crypto", err: err });
+      console.log(err);
     }
   },
 
   deleteCrypto: async (req, res) => {
     try {
-      const crypto = Crypto.findByPk(req.params.id);
+      const crypto = await Crypto.findByPk(req.params.id);
       if (crypto) {
+        await Money.destroy({ where: { cryptoId: crypto.id } });
         await crypto.destroy();
         res.status(204).json();
       } else {

@@ -1,35 +1,43 @@
-import Crypto from "../models/Crypto.js";
-import RealMoney from "../models/RealMoney.js";
+import Money from "../models/cryptos/Money.js";
+import Crypto from "../models/cryptos/Crypto.js";
+import RealMoney from "../models/cryptos/RealMoney.js";
 
 const MoneyController = {
   getAllMoney: async (req, res) => {
     try {
-      const [cryptos, realMoneys] = await Promise.all;
-      [Crypto.findAll(), RealMoney.findAll()];
+      const moneyItems = await Money.findAll({
+        include: [
+          { model: Crypto, as: "cryptoData" },
+          { model: RealMoney, as: "realMoneyData" },
+        ],
+      });
 
-      const moneys = [...cryptos, ...realMoneys];
-      res.status(200).json(moneys);
+      res.status(200).json(moneyItems);
     } catch (err) {
       res
         .status(500)
-        .json({ message: "erro ao buscar cryptos", err: `${err}` });
+        .json({ message: "Error on fetching all money items", err: `${err}` });
     }
   },
+
   getById: async (req, res) => {
     try {
-      const money = Money.findByPk(req.params.id);
-      if (money) {
-        res.json(money);
+      const moneyItem = await Money.findByPk(req.params.id, {
+        include: [
+          { model: Crypto, as: "cryptoData" },
+          { model: RealMoney, as: "realMoneyData" },
+        ],
+      });
+
+      if (moneyItem) {
+        res.json(moneyItem);
       } else {
-        res.status(404).json({
-          message: "Money not found",
-        });
+        res.status(404).json({ message: "Money item not found" });
       }
     } catch (err) {
-      res.status(500).json({
-        message: "Error on found money by id",
-        err: err,
-      });
+      res
+        .status(500)
+        .json({ message: "Error on fetching money item by ID", err: err });
     }
   },
 };

@@ -1,19 +1,20 @@
 import { DataTypes, Model } from "sequelize";
-import sequelize from "../config/connection.js";
+import sequelize from "../../config/connection.js";
 
 class RealMoney extends Model {}
 
 RealMoney.init(
   {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
     },
     country: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    abbreviation: {
+    symbol: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -21,15 +22,12 @@ RealMoney.init(
       type: DataTypes.DOUBLE,
       allowNull: false,
     },
-    symbol: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
   },
   {
     sequelize,
     modelName: "RealMoney",
-    discriminator: "type",
+    tableName: "real_moneys",
+    timestamps: true,
   }
 );
 

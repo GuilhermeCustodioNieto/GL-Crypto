@@ -18,10 +18,6 @@ RealMoney.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    value: {
-      type: DataTypes.DOUBLE,
-      allowNull: false,
-    },
   },
   {
     sequelize,

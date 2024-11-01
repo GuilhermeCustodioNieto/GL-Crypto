@@ -62,10 +62,14 @@ const CryptoController = {
 
   updateCrypto: async (req, res) => {
     try {
-      const crypto = Crypto.findByPk(req.params.id);
+      const crypto = await Crypto.findByPk(req.params.id);
       const { name, quantity, abbreviation, author, valueInDollar } = req.body;
 
-      await crypto.update({ quantity, author, valueInDollar });
+      if (crypto) {
+        await crypto.update({ quantity, author, valueInDollar });
+      } else {
+        res.status(404).json({ message: "Crypto not found" });
+      }
 
       const money = await Money.findOne({ where: { cryptoId: crypto.id } });
       if (money) {
@@ -86,7 +90,7 @@ const CryptoController = {
       if (crypto) {
         await Money.destroy({ where: { cryptoId: crypto.id } });
         await crypto.destroy();
-        res.status(204).json();
+        res.status(202).json();
       } else {
         res.status(404).json({ message: "Crypto not fount" });
       }

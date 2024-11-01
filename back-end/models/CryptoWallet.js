@@ -18,24 +18,11 @@ CryptoWallet.init(
       type: DataTypes.DECIMAL,
       allowNull: false,
     },
-    moneyTypeId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: Money,
-        key: "id",
-      },
-      allowNull: false,
-    },
   },
   {
     sequelize,
     modelName: "CryptoWallet",
   }
 );
-
-CryptoWallet.belongsTo(Money, {
-  foreignKey: "moneyTypeId",
-  as: "money",
-});
 
 export default CryptoWallet;

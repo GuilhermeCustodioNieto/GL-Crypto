@@ -2,6 +2,7 @@ import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/connection.js";
 import Crypto from "./Crypto.js";
 import RealMoney from "./RealMoney.js";
+import CryptoWallet from "../CryptoWallet.js";
 
 class Money extends Model {}
 
@@ -57,5 +58,10 @@ Money.belongsTo(Crypto, { foreignKey: "cryptoId", constraints: false });
 Money.belongsTo(RealMoney, { foreignKey: "realMoneyId", constraints: false });
 Crypto.hasOne(Money, { foreignKey: "cryptoId" });
 RealMoney.hasOne(Money, { foreignKey: "realMoneyId" });
+
+Money.belongsTo(CryptoWallet, {
+  foreignKey: "cryptoWalletId",
+  constraints: false,
+});
 
 export default Money;

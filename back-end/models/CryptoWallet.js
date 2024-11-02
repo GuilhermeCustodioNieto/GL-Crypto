@@ -1,6 +1,7 @@
 import sequelize from "../config/connection.js";
-import { DataTypes, Model } from "sequelize";
+import { DataTypes, INTEGER, Model } from "sequelize";
 import Money from "./cryptos/Money.js";
+import Wallet from "./Wallet.js";
 
 class CryptoWallet extends Model {}
 

@@ -1,20 +1,10 @@
 import Money from "../models/cryptos/Money.js";
 import CryptoWallet from "../models/CryptoWallet.js";
-import WalletMoney from "../models/WalletMoney.js";
 
 const CryptoWalletController = {
   findAll: async (req, res) => {
     try {
-      const cryptoWallets = await CryptoWallet.findAll({
-        include: {
-          model: Money,
-          as: "moneys",
-          through: {
-            model: WalletMoney,
-            attributes: ["balance"],
-          },
-        },
-      });
+      const cryptoWallets = await CryptoWallet.findAll();
       res.json(cryptoWallets);
     } catch (err) {
       res
@@ -24,16 +14,7 @@ const CryptoWalletController = {
   },
   findById: async (req, res) => {
     try {
-      const cryptoWallet = await CryptoWallet.findByPk(req.params.id, {
-        include: {
-          model: Money,
-          as: "moneys",
-          through: {
-            model: WalletMoney,
-            attributes: ["balance"],
-          },
-        },
-      });
+      const cryptoWallet = await CryptoWallet.findByPk(req.params.id);
       if (cryptoWallet) {
         res.json(cryptoWallet);
       } else {
@@ -47,12 +28,13 @@ const CryptoWalletController = {
   },
   createNewCryptoWallet: async (req, res) => {
     try {
-      const { lastPurchase, balance, totalInDollar } = req.body;
+      const { lastPurchase, balance, totalInDollar, moneyTypeId } = req.body;
 
       const cryptoWallet = await CryptoWallet.create({
         lastPurchase,
         balance,
         totalInDollar,
+        moneyTypeId,
       });
 
       res.json(cryptoWallet);
@@ -74,7 +56,7 @@ const CryptoWalletController = {
           lastPurchase,
           balance,
           totalInDollar,
-          moneyTypeIdLasted,
+          moneyTypeId,
         });
         res.json(cryptoWallet);
       } else {

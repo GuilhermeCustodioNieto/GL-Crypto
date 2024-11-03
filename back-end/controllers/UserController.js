@@ -1,7 +1,7 @@
 import User from "../models/User.js";
 
 const UserController = {
-  getUsers: async (req, res) => {
+  findUsers: async (req, res) => {
     try {
       const users = await User.findAll();
       res.status(200).json(users);

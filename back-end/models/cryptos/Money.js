@@ -59,9 +59,4 @@ Money.belongsTo(RealMoney, { foreignKey: "realMoneyId", constraints: false });
 Crypto.hasOne(Money, { foreignKey: "cryptoId" });
 RealMoney.hasOne(Money, { foreignKey: "realMoneyId" });
 
-Money.belongsTo(CryptoWallet, {
-  foreignKey: "cryptoWalletId",
-  constraints: false,
-});
-
 export default Money;

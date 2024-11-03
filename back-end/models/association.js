@@ -12,7 +12,7 @@ CryptoWallet.belongsTo(Wallet, {
   as: "wallet",
 });
 
-CryptoWallet.hasOne(Money, {
+CryptoWallet.belongsTo(Money, {
   foreignKey: "moneyTypeId",
-  constraints: false,
+  as: "moneyType",
 });

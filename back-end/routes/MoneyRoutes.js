@@ -1,8 +1,8 @@
 import express from "express";
 const MoneyRoutes = express.Router();
-import MoneyController from "../controllers/MoneyController.js";
-import CryptoController from "../controllers/CryptoController.js";
-import RealMoneyController from "../controllers/RealMoneyController.js";
+import MoneyController from "../controllers/money/MoneyController.js";
+import CryptoController from "../controllers/money/CryptoController.js";
+import RealMoneyController from "../controllers/money/RealMoneyController.js";
 
 MoneyRoutes.get("/cryptos", CryptoController.getAllCryptos);
 MoneyRoutes.get("/cryptos/:id", CryptoController.getById);

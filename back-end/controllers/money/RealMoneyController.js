@@ -1,5 +1,5 @@
-import RealMoney from "../models/cryptos/RealMoney.js";
-import Money from "../models/cryptos/Money.js";
+import RealMoney from "../../models/cryptos/RealMoney.js";
+import Money from "../../models/cryptos/Money.js";
 
 const RealMoneyController = {
   getAllRealMoney: async (req, res) => {

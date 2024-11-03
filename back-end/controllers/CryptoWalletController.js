@@ -14,7 +14,9 @@ const CryptoWalletController = {
   },
   findById: async (req, res) => {
     try {
-      const cryptoWallet = await CryptoWallet.findByPk(req.params.id);
+      const cryptoWallet = await CryptoWallet.findByPk(req.params.id, {
+        include: { model: Money, as: "moneyType" },
+      });
       if (cryptoWallet) {
         res.json(cryptoWallet);
       } else {
@@ -24,17 +26,20 @@ const CryptoWalletController = {
       res
         .status(500)
         .json({ message: "Error on creation of the crypto", err: err });
+      console.log(err);
     }
   },
   createNewCryptoWallet: async (req, res) => {
     try {
-      const { lastPurchase, balance, totalInDollar, moneyTypeId } = req.body;
+      const { lastPurchase, balance, totalInDollar, moneyTypeId, walletId } =
+        req.body;
 
       const cryptoWallet = await CryptoWallet.create({
         lastPurchase,
         balance,
         totalInDollar,
         moneyTypeId,
+        walletId: walletId,
       });
 
       res.json(cryptoWallet);
@@ -46,7 +51,7 @@ const CryptoWalletController = {
   },
   updateCryptoWallet: async (req, res) => {
     try {
-      const { lastPurchase, balance, totalInDollar } = req.body;
+      const { lastPurchase, balance, totalInDollar, walletId } = req.body;
 
       const cryptoWallet = await CryptoWallet.findByPk(req.params.id);
 
@@ -57,6 +62,7 @@ const CryptoWalletController = {
           balance,
           totalInDollar,
           moneyTypeId,
+          walletId: cryptoWallet.walletId,
         });
         res.json(cryptoWallet);
       } else {

@@ -5,7 +5,7 @@ import CryptoWallet from "../models/CryptoWallet.js";
 const WalletController = {
   findAll: async (req, res) => {
     try {
-      const wallets = Wallet.findAll({
+      const wallets = await Wallet.findAll({
         include: [{ model: CryptoWallet, as: "cryptoWallets" }],
       });
       res.status(202).json(wallets);

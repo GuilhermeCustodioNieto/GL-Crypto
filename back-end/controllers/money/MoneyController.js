@@ -1,14 +1,14 @@
-import Money from "../models/cryptos/Money.js";
-import Crypto from "../models/cryptos/Crypto.js";
-import RealMoney from "../models/cryptos/RealMoney.js";
+import Money from "../../models/cryptos/Money.js";
+import Crypto from "../../models/cryptos/Crypto.js";
+import RealMoney from "../../models/cryptos/RealMoney.js";
 
 const MoneyController = {
   getAllMoney: async (req, res) => {
     try {
       const moneyItems = await Money.findAll({
         include: [
-          { model: Crypto, as: "cryptoData" },
-          { model: RealMoney, as: "realMoneyData" },
+          { model: Crypto, as: "Crypto" },
+          { model: RealMoney, as: "RealMoney" },
         ],
       });
 
@@ -24,8 +24,8 @@ const MoneyController = {
     try {
       const moneyItem = await Money.findByPk(req.params.id, {
         include: [
-          { model: Crypto, as: "cryptoData" },
-          { model: RealMoney, as: "realMoneyData" },
+          { model: Crypto, as: "Crypto" },
+          { model: RealMoney, as: "RealMoney" },
         ],
       });
 

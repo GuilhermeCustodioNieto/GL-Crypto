@@ -1,5 +1,7 @@
 import express from "express";
 import sequelize from "./config/connection.js";
+import swaggerSpects from "./swaggerOptions.js"; 
+import swaggerUI from "swagger-ui-express";
 import UserRoutes from "./routes/UserRoutes.js";
 import MoneyRoutes from "./routes/MoneyRoutes.js";
 import CryptoWalletRoutes from "./routes/CryptoWalletRoutes.js";
@@ -20,10 +22,12 @@ sequelize
     console.error("Erro ao sincronizar o banco de dados", err);
   });
 
+
 app.use("/users", UserRoutes);
 app.use("/money", MoneyRoutes);
 app.use("/crypto-wallet", CryptoWalletRoutes);
 app.use("/wallets", walletsRouter);
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpects))
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);

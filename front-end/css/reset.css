@@ -1,0 +1,62 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.fundo{
+    background-color: #181A20;
+    min-height: 1080px;
+    min-width: 1200px;
+    height: 100%;
+    width: 100%;
+}
+
+
+.centro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.coluna{
+    display: flex;
+    flex-direction: column;
+}
+.linha{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.seta{
+    font-size: 40px;
+    color: #F0B90B;
+    rotate: 270deg;
+}
+
+.logotipo{
+    height: 60px;
+    width: 100px;
+}
+
+.p, h1, h2, h3,h4, label{
+    font-family: "Dosis", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.link-simples{
+    list-style: none;
+    text-decoration: none;
+    color: #F0B90B;
+    font-family: "Dosis", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 18px;
+}
+
+.link-simples:hover{
+    text-decoration: underline #F0B90B;
+}

@@ -5,4 +5,5 @@ import UserController from "../controllers/UserController.js";
 UserRoutes.get("/", UserController.findAll);
 UserRoutes.get("/:id", UserController.findById);
 
+
 export default UserRoutes;

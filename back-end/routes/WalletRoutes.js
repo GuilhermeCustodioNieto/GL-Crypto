@@ -1,6 +1,7 @@
 import express from "express";
 import WalletController from "../controllers/WalletController.js";
 const WalletsRouter = express.Router();
+import authMiddleware from "./middlewares/authMiddleware.js";
 
 /**
  * @swagger
@@ -44,7 +45,7 @@ WalletsRouter.get("/", WalletController.findAll);
  *       500:
  *         description: Erro inesperado ocorreu no sistema
  */
-WalletsRouter.get("/:id", WalletController.findByid);
+WalletsRouter.get("/:id", authMiddleware, WalletController.findByid);
 
 /**
  * @swagger
@@ -89,6 +90,6 @@ WalletsRouter.post("/", WalletController.create);
  *       500:
  *         description: Erro ao remover a carteira
  */
-WalletsRouter.delete("/:id", WalletController.delete);
+WalletsRouter.delete("/:id", authMiddleware, WalletController.delete);
 
 export default WalletsRouter;

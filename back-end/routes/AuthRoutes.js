@@ -1,8 +1,14 @@
 import e from "express";
-import AuthController from "../controllers/AuthController.js";
+import {
+  userAuthController,
+  adminAuthController,
+} from "../controllers/AuthController.js";
 const AuthRoutes = e.Router();
 
-AuthRoutes.post("/login", AuthController.login);
-AuthRoutes.post("/register", AuthController.register);
+AuthRoutes.post("/user/login", userAuthController.login);
+AuthRoutes.post("/user/register", userAuthController.register);
+
+AuthRoutes.post("/admin/login", adminAuthController.login);
+AuthRoutes.post("/admin/register", adminAuthController.register);
 
 export default AuthRoutes;

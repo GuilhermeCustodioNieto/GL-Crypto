@@ -1,5 +1,6 @@
 import express from "express";
 import CryptoWalletController from "../controllers/CryptoWalletController.js";
+import authMiddleware from "./middlewares/authMiddleware.js";
 const CryptoWalletRoutes = express.Router();
 
 /**
@@ -44,7 +45,7 @@ CryptoWalletRoutes.get("/", CryptoWalletController.findAll);
  *       500:
  *         description: Erro inesperado ocorreu no sistema
  */
-CryptoWalletRoutes.get("/:id", CryptoWalletController.findById);
+CryptoWalletRoutes.get("/:id", authMiddleware, CryptoWalletController.findById);
 
 /**
  * @swagger
@@ -115,7 +116,11 @@ CryptoWalletRoutes.post("/", CryptoWalletController.createNewCryptoWallet);
  *       500:
  *         description: Erro ao atualizar a carteira de criptomoedas
  */
-CryptoWalletRoutes.put("/:id", CryptoWalletController.updateCryptoWallet);
+CryptoWalletRoutes.put(
+  "/:id",
+  authMiddleware,
+  CryptoWalletController.updateCryptoWallet
+);
 
 /**
  * @swagger
@@ -138,6 +143,10 @@ CryptoWalletRoutes.put("/:id", CryptoWalletController.updateCryptoWallet);
  *       500:
  *         description: Erro ao remover a carteira de criptomoedas
  */
-CryptoWalletRoutes.delete("/:id", CryptoWalletController.deleteCryptoWallet);
+CryptoWalletRoutes.delete(
+  "/:id",
+  authMiddleware,
+  CryptoWalletController.deleteCryptoWallet
+);
 
 export default CryptoWalletRoutes;

@@ -3,38 +3,53 @@ import User from "../models/User.js";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import Wallet from "../models/Wallet.js";
 
 dotenv.config();
 
 const userAuthController = {
   register: async (req, res) => {
     try {
-      const { name, age, rg, cpf, email, password, secondPassword } = req.body;
+      const {
+        personalName,
+        age,
+        rg,
+        cpf,
+        email,
+        userPassword,
+        secondPassword,
+      } = req.body;
 
       const query = await User.findOne({ where: { email: email } });
       if (query) {
         return res.status(409).json("The user already exists on the system.");
       }
 
-      if (password !== secondPassword) {
+      if (userPassword !== secondPassword) {
         return res.status(400).json("The passwords aren't equals.");
       } else if (age < 18) {
-        return res.status(403).json("age is less than eighteen (18) years")
+        return res.status(403).json("age is less than eighteen (18) years");
       }
 
-      const newPassword = await bcryptjs.hash(password, 10);
+      const newPassword = await bcryptjs.hash(userPassword, 10);
+
+      const wallet = await Wallet.create({});
 
       const user = await User.create({
-        name,
+        personalName,
         age,
         rg,
         cpf,
         email,
-        password: newPassword,
+        userPassword: newPassword,
+        walletId: wallet.id,
       });
       return res.status(201).json(user);
     } catch (err) {
-      res.status(500).json({ message: "Error on register a new user", err });
+      res
+        .status(500)
+        .json({ message: "Error on register a new user", err: err });
+      console.log(err);
     }
   },
   login: async (req, res) => {
@@ -42,7 +57,9 @@ const userAuthController = {
       const { email, password } = req.body;
       const user = await User.findOne({ where: { email: email } });
 
-      if (!user || (await bcryptjs.compare(password, user.password))) {
+      console.log(user);
+
+      if (!user || !(await bcryptjs.compare(password, user.userPassword))) {
         return res.status(401).json({ message: "Invalid email or password" });
       }
 

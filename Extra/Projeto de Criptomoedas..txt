@@ -1,0 +1,45 @@
+Projeto de Criptomoedas.
+
+Feito por Guilherme Custódio Nieto e Lucas Caribé Araújo.
+
+O que está feito até o momento:
+
+FRONT-END:
+Até o momento temos as telas de login e cadastro do usuário, onde ele preenche seus dados e estes serão enviados para a API que será consumida em um futuro momento.
+
+	Estamos utilizando:
+		* HTML
+		* CSS
+		* pngs e gifs.
+
+	Telas:
+		* Login 1
+		* Login 2
+		* Registro 1
+		* Registro 2
+
+BACK-END:
+* Até o momento temos uma robusta API, com 6 classes criadas e respectivamente implementadas, com relacionamentos múltiplos e bem estruturados. 
+* Nela temos todas as models, views e controllers de uma API, com um CRUD bem implementado utilizando sequelize e MySQL nelas. 
+* Em questão de documentação estamos usando Swagger para que todos os endpoints estejam bem descritos e utilizáveis.
+* No sistema de autenticação de usuários estamos utilizando middlewares em conjunto com JWT para uma maior segurança do site, e criptografia de senhas usando uma SECRET definida no .env e a biblioteca bcryptojs. Atualmente temos implementado o sistema de registro e login.
+
+	Técnologias:
+		* Node JS
+		* MySQL
+		* JWT
+		* Swagger
+		* bcrypto
+
+	Classes:
+		* Money
+		* Crypto
+		* RealMoney
+		* CryptoWallet
+		* Wallet
+		* User
+
+INFRA:
+* estamos usando o GitHub para armazenamento de dados até o momento, arquivos .astah como diagrama de classes e diagrama UML para início de projeto e Figma para UX do projeto.
+* Banco de dados que está sendo utilizado é MySQL
+* O próximo passo a ser dado é utilizar o docker no projeto para que haja uma maior estabilidade e um projeto bem feito.

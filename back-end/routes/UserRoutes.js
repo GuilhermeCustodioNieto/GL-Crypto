@@ -1,10 +1,10 @@
 import express from "express";
 const UserRoutes = express.Router();
 import UserController from "../controllers/UserController.js";
-import authMiddleware from "./middlewares/authMiddleware.js";
+import { userMiddleware } from "./middlewares/authMiddleware.js";
 
 UserRoutes.get("/", UserController.findAll);
-UserRoutes.get("/:id", authMiddleware, UserController.findById);
-UserRoutes.get("/getAllData/:id", UserController.getAllData);
+UserRoutes.get("/:id", userMiddleware, UserController.findById);
+UserRoutes.get("/getAllData/:id", userMiddleware, UserController.getAllData);
 
 export default UserRoutes;

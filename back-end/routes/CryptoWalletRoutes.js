@@ -1,6 +1,6 @@
 import express from "express";
 import CryptoWalletController from "../controllers/CryptoWalletController.js";
-import authMiddleware from "./middlewares/authMiddleware.js";
+import { userMiddleware } from "./middlewares/authMiddleware.js";
 const CryptoWalletRoutes = express.Router();
 
 /**
@@ -45,7 +45,7 @@ CryptoWalletRoutes.get("/", CryptoWalletController.findAll);
  *       500:
  *         description: Erro inesperado ocorreu no sistema
  */
-CryptoWalletRoutes.get("/:id", authMiddleware, CryptoWalletController.findById);
+CryptoWalletRoutes.get("/:id", userMiddleware, CryptoWalletController.findById);
 
 /**
  * @swagger
@@ -118,7 +118,7 @@ CryptoWalletRoutes.post("/", CryptoWalletController.createNewCryptoWallet);
  */
 CryptoWalletRoutes.put(
   "/:id",
-  authMiddleware,
+  userMiddleware,
   CryptoWalletController.updateCryptoWallet
 );
 
@@ -145,7 +145,7 @@ CryptoWalletRoutes.put(
  */
 CryptoWalletRoutes.delete(
   "/:id",
-  authMiddleware,
+  userMiddleware,
   CryptoWalletController.deleteCryptoWallet
 );
 

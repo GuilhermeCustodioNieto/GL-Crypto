@@ -8,6 +8,7 @@ import CryptoWalletRoutes from "./routes/CryptoWalletRoutes.js";
 import "./models/association.js";
 import walletsRouter from "./routes/WalletRoutes.js";
 import AuthRoutes from "./routes/AuthRoutes.js";
+import TransationRoutes from "./routes/TransationRoutes.js";
 
 const app = express();
 const PORT = 3000;
@@ -28,6 +29,7 @@ app.use("/users", UserRoutes);
 app.use("/money", MoneyRoutes);
 app.use("/crypto-wallet", CryptoWalletRoutes);
 app.use("/wallets", walletsRouter);
+app.use("/transation", TransationRoutes)
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpects));
 
 

@@ -4,6 +4,7 @@ import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import Wallet from "../models/Wallet.js";
+import transporter from "../config/Transporter.js";
 
 dotenv.config();
 
@@ -44,6 +45,26 @@ const userAuthController = {
         userPassword: newPassword,
         walletId: wallet.id,
       });
+
+      const mailOptions = {
+        from: process.env.MAIL_USER,
+        to: email,
+        subject: "Bem-Vindo ao GL_Crypto!",
+        text: `
+          <h1>Seja bem-vindo ao site GL-Crypto!</h1>
+          <p>Seja bem vindo ${personalName} ao GL-Crypto, sua carteira de criptomoedas mais confiável.</p>
+          <p>Aqui você pode comprar, vender e fazer transações diversas com aas suas cryptos.<br> Sinta-se livre para utilizar do sistema como um todo! <br></p>
+        `,
+      };
+
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("email enviado com sucesso");
+        }
+      });
+
       return res.status(201).json(user);
     } catch (err) {
       res

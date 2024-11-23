@@ -5,21 +5,150 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina Principal</title>
+    <!-- Iconify Script -->
+    <script src="https://code.iconify.design/3/3.0.0/iconify.min.js"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" href="./css/reset.css">
-</head>
-<body class="centro fundo">
-    <header>
+    <link rel="stylesheet" href="./css/index.css">
 
+    <!-- Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+</head>
+<body class="fundo centro">
+
+    <header class="container-header">
+        <section class="section-header">
+            <img src="./imgs/logo.gif" alt="logotipo" class="logotipo">
+            <nav class="nav-bar">
+                <a href="#" class="links-header p">Compre Cripto</a>
+                <a href="#" class="links-header p">Trade Cripto</a>
+                <a href="#" class="links-header p">Sobre GL Cripto</a>
+            </nav>
+        </section>
+        <section class="section-header">
+            <a href="./login/login.html" class="box-link">ENTRAR</a>
+            <a href="./login/registro1.html" class="box-link2"><span class="iconify icon" data-icon="tabler:gift" data-inline="false"></span>CADASTRAR-SE</a>
+            <div class="box-qr"><span class="iconify qr-code" data-icon="mdi:qrcode" data-inline="false"></span></div>
+
+        </section>
     </header>
 
-    <main>
+    <main class="container-main">
+        <section class="container-cards">
 
+            <section class="container-drop">
+                <div class="drop-textos">
+                    <h2 class="drop-titulo">Não perca nosso <br>Próximo Drop<span class="iconify icon3" data-icon="hugeicons:bitcoin-bag" data-inline="false"></span></h2>
+                    <h4 class="drop-sub-titulo">Air-Drops todas as quartas </h4>
+                    <br>
+                    <p class="drop-text">Toda Semana centenas de novas <br> criptos, não perca sua chance de ouro.</p>
+                    <p class="drop-sub-text">Disponivél apenas para quem possuir 50 <a href="#" class="link-simples">GLCOINS</a> na Carteira</p>
+                    <div class="espaco2"><a href="#" class="btn-drop">Participe</a></div>  
+                </div>
+                <div class="drop-img">
+                    <img src="./imgs/drop1.png" alt="drop" class="drop-img">
+                </div>
+            </section>
+
+            <section class="container-tabela">
+                <h2 class="tabela-titulo">Populares</h2>
+                <div class="tabela-box">
+                    
+                        <div class="linha-logo">
+                                <div class="logo-box">
+                                    <img src="./imgs/logos/bitcoin.png" alt="logo" class="coin-logo">
+                                    <h2 class="coin-sigla">BTC</h2>
+                                    <p class="coin-nome">Bitcoin</p>
+                                </div>
+                                <div class="valores-box">
+                                    <h2 class="tabela-valores">$98.492,26</h2>
+                                </div>
+                                <div class="bonus-box">
+                                    <h3 class="bonus-valor1">+0,39%</h3>
+                                </div>
+                        </div>
+
+                        <div class="linha-logo">
+                            <div class="logo-box">
+                                <img src="./imgs/logos/eth.png" alt="logo" class="coin-logo">
+                                <h2 class="coin-sigla">ETH</h2>
+                                <p class="coin-nome">Ethereum</p>
+                            </div>  
+                            <div class="valores-box">
+                                <h2 class="tabela-valores">$3.440,26</h2>
+                            </div>
+                            <div class="bonus-box">
+                                <h3 class="bonus-valor2">-0,27%</h3>
+                            </div>
+                        </div>
+
+                        <div class="linha-logo">
+                            <div class="logo-box">
+                                <img src="./imgs/logos/xrp.png" alt="logo" class="coin-logo">
+                                <h2 class="coin-sigla">XRP</h2>
+                                <p class="coin-nome">Ripple</p>
+                            </div>
+                            <div class="valores-box">
+                                <h2 class="tabela-valores">$1,5932</h2>
+                            </div>
+                            <div class="bonus-box">
+                                <h3 class="bonus-valor2">-0,54%</h3>
+                            </div>    
+                        </div>
+
+                        <div class="linha-logo">
+                            <div class="logo-box">
+                                <img src="./imgs/logos/bnb.png" alt="logo" class="coin-logo">
+                                <h2 class="coin-sigla">BNB</h2>
+                                <p class="coin-nome">Binance</p>
+                            </div>
+                            <div class="valores-box">
+                                <h2 class="tabela-valores">$644,72</h2>
+                            </div>
+                            <div class="bonus-box">
+                                <h3 class="bonus-valor1">+0,38%</h3>
+                            </div>
+                        </div>
+
+                        <div class="linha-logo">
+                            <div class="logo-box">
+                                <img src="./imgs/logos/doge.png" alt="logo" class="coin-logo">
+                                <h2 class="coin-sigla">DOGE</h2>
+                                <p class="coin-nome">Dogecoin</p>
+                            </div>
+                            <div class="valores-box">
+                                <h2 class="tabela-valores">$0,4174</h2>
+                            </div>
+                            <div class="bonus-box">
+                                <h3 class="bonus-valor1">+0,77%</h3>
+                            </div>
+                        </div>
+                    
+            </section>
+
+        </section>
+
+        <section class="container-dados">
+            <div class="promo">
+                <h3 class="promo-texto">VERIFIQUE SUA CONTA PARA GANHAR DIVERSOS <span class="atencao">BÔNUS</span></h3>
+                <br>
+                <h2 class="promo-atencao"><span class="atencao">100 </span>USD de<span class="atencao"> CASHBACK</span> em <span class="atencao"> TRADES</span></h2>
+                <br>
+                <a href="./login/registro1.html" class="promo-btn">Registre-se Agora</a>
+            </div>
+        </section>
     </main>
 
-    <footer>
-
+    <footer class="container-footer">
+        <h2 class="copy">Desenvolvido por Lucas e Guilherme&copy;</h2> 
     </footer>
 </body>
 </html>

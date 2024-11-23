@@ -197,5 +197,3 @@ const TransactionController = {
 };
 
 export default TransactionController;
-
-export default TransationController

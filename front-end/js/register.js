@@ -17,7 +17,7 @@ const pg2 = `
         <form class="formulario" id="registro2">
         <div class="coluna">
             <label for="telefone" class="label-login">Numero de Telefone</label>
-            <input type="tel" id="telefone" name="telefone" required class="input-login" />
+            <input type="tel" id="telefone" name="phone" required class="input-login" />
         </div>
 
         <div class="coluna">
@@ -129,6 +129,8 @@ function initializePage3Events() {
     formData.forEach((value, key) => {
       dataRequest[key] = value;
     });
+
+    console.log(dataRequest);
 
     // Envia os dados para a API
     axios

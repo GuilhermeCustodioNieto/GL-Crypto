@@ -1,4 +1,6 @@
+import Crypto from "../models/cryptos/Crypto.js";
 import Money from "../models/cryptos/Money.js";
+import RealMoney from "../models/cryptos/RealMoney.js";
 import CryptoWallet from "../models/CryptoWallet.js";
 import User from "../models/User.js";
 import Wallet from "../models/Wallet.js";
@@ -45,6 +47,10 @@ const UserController = {
             include: {
               model: Money,
               as: "moneyType",
+              include: [
+                { model: Crypto, as: "Crypto" },
+                { model: RealMoney, as: "RealMoney" },
+              ],
             },
           },
         },
@@ -52,6 +58,8 @@ const UserController = {
 
       res.json(user);
     } catch (err) {
+      console.log(err);
+
       res.status(500).json({ message: "Error on get all data", err: err });
     }
   },

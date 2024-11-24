@@ -12,10 +12,11 @@ form.addEventListener("submit", (event) => {
   axios
     .post("http://localhost:3000/auth/user/login", dataRequest)
     .then((response) => {
-      console.log("Resposta da API:", response.data);
-      sessionStorage.setItem("jwtToken", response.data.token);
+      console.log("Resposta da API:", response.data.returnData);
+      sessionStorage.setItem("jwtToken", response.data.returnData.token);
+      sessionStorage.setItem("userId", response.data.returnData.idUser);
 
-      alert("Registro concluído com sucesso!");
+      alert("Login concluído com sucesso!");
       window.location.href = "../usuario/usuario.html";
     })
     .catch((error) => {

@@ -1,184 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-    <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Pagina de Usuario</title>
-            <!-- Iconify Script -->
-            <script src="https://code.iconify.design/3/3.0.0/iconify.min.js"></script>
-            <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
-        
-            <!-- CSS -->
-            <link rel="stylesheet" href="../css/reset.css">
-            <link rel="stylesheet" href="../css/index.css">
-            <link rel="stylesheet" href="../css/header.css">
-            <link rel="stylesheet" href="..//css/usuario.css">
-            <link rel="stylesheet" href="../css/cards/card-popular.css">
-            <!-- Font-->
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
-        
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-        </head>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Pagina de Usuario</title>
+      <!-- Iconify Script -->
+      <script src="https://code.iconify.design/3/3.0.0/iconify.min.js"></script>
+      <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+
+      <!-- CSS -->
+      <link rel="stylesheet" href="../css/reset.css" />
+      <link rel="stylesheet" href="../css/index.css" />
+      <link rel="stylesheet" href="../css/header.css" />
+      <link rel="stylesheet" href="..//css/usuario.css" />
+      <link rel="stylesheet" href="../css/cards/card-popular.css" />
+      <!-- Font-->
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap"
+        rel="stylesheet"
+      />
+
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet"
+      />
+    </head>
     <body class="fundo centro">
+      <header class="container-header">
+        <section class="section-header">
+          <a href="../index.html"
+            ><img src="../imgs/logo.gif" alt="logotipo" class="logotipo"
+          /></a>
+          <nav class="nav-bar">
+            <a href="../venda-compra/compras-cripto.html" class="links-header p"
+              >Compre Cripto</a
+            >
+            <a href="../venda-compra/vendas-cripto.html" class="links-header p"
+              >Trade Cripto</a
+            >
+            <a href="../index.html" class="links-header p">Sobre GL Cripto</a>
+          </nav>
+        </section>
+        <section class="section-header">
+          <a href="../venda-compra/compras-cripto.html" class="box-link2"
+            ><span
+              class="iconify"
+              data-icon="tdesign:money"
+              data-width="24"
+              data-height="24"
+            ></span>
+            DEPOSITAR</a
+          >
+          <a href="./usuario.html" class="link-none"
+            ><span
+              class="iconify icon-user"
+              data-icon="mingcute:user-4-fill"
+            ></span
+          ></a>
+        </section>
+      </header>
 
-        <header class="container-header">
-            <section class="section-header">
-                <a href="../index.html"><img src="../imgs/logo.gif" alt="logotipo" class="logotipo"></a>
-                <nav class="nav-bar">
-                    <a href="../venda-compra/compras-cripto.html" class="links-header p">Compre Cripto</a>
-                    <a href="../venda-compra/vendas-cripto.html" class="links-header p">Trade Cripto</a>
-                    <a href="../index.html" class="links-header p">Sobre GL Cripto</a>
-                </nav>
-            </section>
-            <section class="section-header">
-                <a href="../venda-compra/compras-cripto.html" class="box-link2"><span class="iconify" data-icon="tdesign:money" data-width="24" data-height="24"></span> DEPOSITAR</a>
-                <a href="./usuario.html" class="link-none"><span class="iconify icon-user" data-icon="mingcute:user-4-fill"></span></a>
-            </section>
-        </header>
+      <main class="container-main">
+        <h2 class="titulo">
+          Olá <span class="detalhe" id="username-title">Username</span>
+        </h2>
 
-        <main class="container-main">
-            <h2 class="titulo">Olá <span class="detalhe">Username</span></h2>
-
-            <section class="cards-user">
-
-                <div class="user-dados">
-                    <span class="icon-user iconify" data-icon="solar:user-id-bold" data-inline="false"></span>
-                    <h2 class="nome-user">Username</h2>
-                    <div class="text-card">
-                        <h3 class="dados">Email:<span class="dado-user"> *****@exemplo.com</span></h3>
-                        <h3 class="dados">Telefone:<span class="dado-user"> ** ***** ****</span></h3>
-                        <h3 class="dados">CPF:<span class="dado-user"> ***********</span></h3>
-                        <h3 class="dados">RG:<span class="dado-user"> ***********</span></h3>
-                        <h3 class="dados">ID User:<span class="dado-user"> 000001</span></h3>
-                    </div>
-                </div>
-
-                <div class="user-carteira">
-                    <h2 class="text-fundos">Seus Fundos:</h2>
-                    <div class="tabela-box">
-                    
-                        <div class="linha-logo">
-                                <div class="logo-box">
-                                    <img src="../imgs/logos/bitcoin.png" alt="logo" class="coin-logo">
-                                    <h2 class="coin-sigla">BTC</h2>
-                                    <p class="coin-nome">Bitcoin</p>
-                                </div>
-                                <div class="valores-box">
-                                    <h2 class="tabela-valores">$98.492,26</h2>
-                                </div>
-                                <div class="bonus-box">
-                                    <div class="fundos-valor">
-                                        <p class="texto-valor">Possui:</p>
-                                        <span class="valor-conta">***</span>
-                                    </div>
-                                </div>
-                        </div>
-
-                        <div class="linha-logo">
-                            <div class="logo-box">
-                                <img src="../imgs/logos/eth.png" alt="logo" class="coin-logo">
-                                <h2 class="coin-sigla">ETH</h2>
-                                <p class="coin-nome">Ethereum</p>
-                            </div>  
-                            <div class="valores-box">
-                                <h2 class="tabela-valores">$3.440,26</h2>
-                            </div>
-                            <div class="bonus-box">
-                                <div class="fundos-valor">
-                                    <p class="texto-valor">Possui:</p>
-                                    <span class="valor-conta">***</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="linha-logo">
-                            <div class="logo-box">
-                                <img src="../imgs/logos/xrp.png" alt="logo" class="coin-logo">
-                                <h2 class="coin-sigla">XRP</h2>
-                                <p class="coin-nome">Ripple</p>
-                            </div>
-                            <div class="valores-box">
-                                <h2 class="tabela-valores">$1,5932</h2>
-                            </div>
-                            <div class="bonus-box">
-                                <div class="fundos-valor">
-                                    <p class="texto-valor">Possui:</p>
-                                    <span class="valor-conta">***</span>
-                                </div>
-                            </div>    
-                        </div>
-
-                        <div class="linha-logo">
-                            <div class="logo-box">
-                                <img src="../imgs/logos/bnb.png" alt="logo" class="coin-logo">
-                                <h2 class="coin-sigla">BNB</h2>
-                                <p class="coin-nome">Binance</p>
-                            </div>
-                            <div class="valores-box">
-                                <h2 class="tabela-valores">$644,72</h2>
-                            </div>
-                            <div class="bonus-box">
-                                <div class="fundos-valor">
-                                    <p class="texto-valor">Possui:</p>
-                                    <span class="valor-conta">***</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="linha-logo">
-                            <div class="logo-box">
-                                <img src="../imgs/logos/doge.png" alt="logo" class="coin-logo">
-                                <h2 class="coin-sigla">DOGE</h2>
-                                <p class="coin-nome">Dogecoin</p>
-                            </div>
-                            <div class="valores-box">
-                                <h2 class="tabela-valores">$0,4174</h2>
-                            </div>
-                            <div class="bonus-box">
-                                <div class="fundos-valor">
-                                    <p class="texto-valor">Possui:</p>
-                                    <span class="valor-conta">***</span>
-                                </div>
-                            </div>
-                        </div>
-                </div> 
-                </div>
-
-                <div class="user-dados">
-                    <span class="icon-user iconify" data-icon="streamline:parachute-drop" data-inline="false"></span>
-                    <h2 class="nome-user">Cripto-Drop</h2>
-                    <div class="dados-drop">
-                        <div class="coin">
-                            <img src="../imgs/logos/xrp.png" alt="coin" class="logo-coin">
-                            <h2 class="nome-coin">XRP</h2>
-                            <p class="text-coin">Ripple</p>
-                            <p class="valor-coin">$1,5932</p>
-                        </div>
-
-                    </div>
-                    <p class="btn-drop">Não Disponivél</p>
-                </div>
-
-            </section>
-
-            <div class="verificar">
-                <div>
-                    <h2 class="titulo-verificar">Verificar Conta</h2>
-                    <p class="texto-verificar">Verifique sua conta para liberar todas as funcionalidades do site <br> Bônus de verificação nas 10 primeiras transações</p>
-                </div>
-                <a href="#" class="btn-verificar">Verificar<span class="iconify icon-style" data-icon="flowbite:user-add-solid" data-inline="false"></span></a>
+        <section class="cards-user">
+          <div class="user-dados">
+            <span
+              class="icon-user iconify"
+              data-icon="solar:user-id-bold"
+              data-inline="false"
+            ></span>
+            <h2 class="nome-user" id="username">Username</h2>
+            <div class="text-card">
+              <h3 class="dados">
+                Email:<span class="dado-user" id="email">
+                  *****@exemplo.com</span
+                >
+              </h3>
+              <h3 class="dados">
+                Telefone:<span class="dado-user" id="phone">
+                  ** ***** ****</span
+                >
+              </h3>
+              <h3 class="dados">
+                CPF:<span class="dado-user" id="cpf"> ***********</span>
+              </h3>
+              <h3 class="dados">
+                RG:<span class="dado-user" id="rg"> ***********</span>
+              </h3>
+              <h3 class="dados">
+                ID User:<span class="dado-user" id="id"> 000001</span>
+              </h3>
             </div>
-        </main>
+          </div>
 
-        <footer class="container-footer">
-            <h2 class="copy">Desenvolvido por Lucas e Guilherme&copy;</h2> 
-        </footer>
-        
+          <div class="user-carteira">
+            <h2 class="text-fundos">Seus Fundos:</h2>
+            <div class="tabela-box" id="tabelaCriptos"></div>
+          </div>
+
+          <div class="user-dados">
+            <span
+              class="icon-user iconify"
+              data-icon="streamline:parachute-drop"
+              data-inline="false"
+            ></span>
+            <h2 class="nome-user">Cripto-Drop</h2>
+            <div class="dados-drop">
+              <div class="coin">
+                <img src="../imgs/logos/xrp.png" alt="coin" class="logo-coin" />
+                <h2 class="nome-coin">XRP</h2>
+                <p class="text-coin">Ripple</p>
+                <p class="valor-coin">$1,5932</p>
+              </div>
+            </div>
+            <p class="btn-drop">Não Disponivél</p>
+          </div>
+        </section>
+
+        <div class="verificar">
+          <div>
+            <h2 class="titulo-verificar">Verificar Conta</h2>
+            <p class="texto-verificar">
+              Verifique sua conta para liberar todas as funcionalidades do site
+              <br />
+              Bônus de verificação nas 10 primeiras transações
+            </p>
+          </div>
+          <a href="#" class="btn-verificar"
+            >Verificar<span
+              class="iconify icon-style"
+              data-icon="flowbite:user-add-solid"
+              data-inline="false"
+            ></span
+          ></a>
+        </div>
+      </main>
+
+      <footer class="container-footer">
+        <h2 class="copy">Desenvolvido por Lucas e Guilherme&copy;</h2>
+      </footer>
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      <script src="../js/user.js"></script>
     </body>
+  </html>
 </html>

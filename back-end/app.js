@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import sequelize from "./config/connection.js";
 import swaggerSpects from "./swaggerOptions.js";
 import swaggerUI from "swagger-ui-express";
@@ -14,6 +15,7 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+app.use(cors());
 
 sequelize
   .sync()
@@ -29,9 +31,8 @@ app.use("/users", UserRoutes);
 app.use("/money", MoneyRoutes);
 app.use("/crypto-wallet", CryptoWalletRoutes);
 app.use("/wallets", walletsRouter);
-app.use("/transation", TransationRoutes)
+app.use("/transation", TransationRoutes);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpects));
-
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);

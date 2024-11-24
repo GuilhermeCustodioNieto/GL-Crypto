@@ -1,7 +1,8 @@
 const dataRequest = {}; // Objeto para armazenar os dados do usuário
 
 const pg2 = `
-<body class="centro fundo">
+<body class="fundo centro-login">
+
     <main>
     <section class="container-principal">
         <header class="header-login">
@@ -37,7 +38,8 @@ const pg2 = `
 `;
 
 const pg3 = `
-<body class="fundo centro">
+<body class="fundo centro-login">
+
     <main>
     <section class="container-principal">
         <header class="header-login">

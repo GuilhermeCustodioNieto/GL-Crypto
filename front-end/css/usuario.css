@@ -1,0 +1,246 @@
+.icon-user{
+    color: #474D57;
+    height: 45px;
+    width: 45px;
+    margin: 0px 15px;
+    transition: .5s;
+}
+
+.icon-user:hover{
+    color: #f0b90f;
+}
+
+/* base */
+
+.container-main{
+    display: flex;
+    align-items: center;
+    flex-direction: column;    
+}
+
+.titulo{
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 40px;
+    color: #eee;
+    margin: 0px 0px 25px 0px;
+}
+
+.titulo span{
+    color: #f0b90f;
+}
+
+
+.cards-user{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    gap: 30px;
+}
+/* DADOS DO USUARIO */ 
+
+.user-dados{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 475px;
+    width: 450px;
+    border-radius: 10px;
+    border: 3px #474D57 solid;
+}
+
+.nome-user{
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 30px;
+    color: #eee;
+    margin: 5px;
+}
+
+.text-card{
+    display: flex;
+    justify-content: center;
+    align-items:start;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.dados{
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 20px;
+    color: #eee;
+    font-weight: 500;
+}
+
+.dado-user{
+    color: #f0b90f;
+}
+
+/* Carteira de Fundos */
+
+.user-carteira{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-height: 275px;
+    min-width: 750px;
+    border: 3px #474D57 solid;
+    border-radius: 10px;
+}
+
+.text-fundos{
+    margin-top: 10px;
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 25px;
+    color: #eee;
+}
+
+.fundos-valor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: none;
+}
+
+.texto-valor{
+    color: #f0b90f;
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 5px;
+}
+
+.valor-conta{
+    font-size: 15px;
+    color: #eee;
+}
+/* cripto Drop */ 
+
+.coin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.logo-coin{
+    height: 60px;
+    width: 60px;
+}
+
+.nome-coin{
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 25px;
+    color: #eee;
+    font-weight: 500;
+}
+
+.text-coin{
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 15px;
+    color: #474D57;
+    font-weight: 400;
+}
+
+.valor-coin{
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 20px;
+    color: #eee;
+    font-weight: 400;
+}
+
+.btn-drop{
+    padding: 15px 25px;
+    border-radius: 5px;
+    border: 2px solid #2b2b2b;
+    background-color: #474D57;
+    color: #FCD535;
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    transition: .5s;
+}
+
+.btn-drop:hover{
+    background-color: #2b2b2b;
+    text-shadow: 0px 0px 15px #f0b90f;
+    font-size: 20.5px;
+}
+
+/* verificar */
+
+.verificar{
+    margin: 50px 0px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 725px;
+    height: 300px;
+    border: 2px #FCD535 solid;
+    border-radius: 10px;
+}
+
+.titulo-verificar{
+    color: #FCD535;
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    margin: 30px;
+}
+
+.texto-verificar{
+    color: #D9D9D9;
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 20px;
+    margin: 0px 0px 30px 30px;
+    padding: 5px;
+}
+
+.btn-verificar{
+    text-decoration: none;
+    font-size: 26px;
+    color: #23292F;
+    background-color: #f0b90f;
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 600;
+    width: 225px;
+    height: 70px;
+    border-radius: 10px;
+    margin: 0px 0px 10px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .5s;
+}
+
+.btn-verificar:hover{
+    box-shadow: 0px 0px 15px #f0b90f;
+}
+

@@ -16,7 +16,7 @@ const MoneyController = {
     } catch (err) {
       res
         .status(500)
-        .json({ message: "Error on fetching all money items", err: `${err}` });
+        .json({ message: "Error on fetching all money items", error: err });
     }
   },
 

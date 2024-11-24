@@ -95,7 +95,6 @@ function initializePage2Events() {
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    console.log("Submissão da página 2 capturada.");
 
     const formData = new FormData(form);
     formData.forEach((value, key) => {

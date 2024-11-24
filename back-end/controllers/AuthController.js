@@ -17,6 +17,7 @@ const userAuthController = {
         rg,
         cpf,
         email,
+        phone,
         userPassword,
         secondPassword,
       } = req.body;
@@ -42,6 +43,7 @@ const userAuthController = {
         rg,
         cpf,
         email,
+        phone,
         userPassword: newPassword,
         walletId: wallet.id,
       });

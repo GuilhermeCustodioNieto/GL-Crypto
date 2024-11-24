@@ -1,7 +1,5 @@
-// 16217|XDwvdefGX3t6Wiqf2KKhx7F1bCsxjt7G
 import axios from "axios";
 
-// URL da API e chave de autenticação
 export default async function getConversion(input, output) {
   const url = "https://min-api.cryptocompare.com/data/price";
   const apiKey =
@@ -10,19 +8,24 @@ export default async function getConversion(input, output) {
   // Parâmetros
   const params = {
     fsym: input, // Moeda de origem
-    tsyms: output, // Moedas de destino
+    tsyms: output, // Moeda de destino
   };
 
-  // Fazer a requisição
-  axios
-    .get(url, {
+  try {
+    // Requisição com async/await
+    const response = await axios.get(url, {
       params,
       headers: { Authorization: `Apikey ${apiKey}` },
-    })
-    .then((response) => {
-      return response.data[output];
-    })
-    .catch((error) => {
-      console.error("Erro na requisição:", error.message);
     });
+
+    // Validação do retorno
+    if (!response.data || !response.data[output]) {
+      throw new Error("Conversão não encontrada ou inválida.");
+    }
+
+    return response.data[output]; // Retorna o valor da conversão
+  } catch (error) {
+    console.error("Erro ao buscar conversão:", error.message);
+    throw error; // Propaga o erro para o controlador
+  }
 }

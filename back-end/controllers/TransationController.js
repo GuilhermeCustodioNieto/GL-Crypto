@@ -64,6 +64,7 @@ const TransactionController = {
       );
 
       const outputValue = Number(conversion) * Number(balance);
+      console.log(conversion);
 
       if (
         Number(existingCryptoWalletOutput.balance) >= outputValue &&

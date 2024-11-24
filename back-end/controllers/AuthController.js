@@ -17,6 +17,7 @@ const userAuthController = {
         rg,
         cpf,
         email,
+        phone,
         userPassword,
         secondPassword,
       } = req.body;
@@ -45,6 +46,7 @@ const userAuthController = {
         rg,
         cpf,
         email,
+        phone,
         userPassword: newPassword,
         walletId: wallet.id,
       });
@@ -91,7 +93,12 @@ const userAuthController = {
         expiresIn: "12h",
       });
 
-      res.json({ message: "Login sucessful", token });
+      const returnData = {
+        token: token,
+        idUser: user.id,
+      };
+
+      res.json({ message: "Login sucessful", returnData });
     } catch (err) {
       res.status(500).json({ message: "Error on login", err });
     }
@@ -144,8 +151,6 @@ const adminAuthController = {
       const { email, password } = req.body;
       const user = await User.findOne({ where: { email: email } });
 
-      console.log(user);
-
       if (!user || !(await bcryptjs.compare(password, user.userPassword))) {
         return res.status(401).json({ message: "Invalid email or password" });
       }
@@ -154,7 +159,12 @@ const adminAuthController = {
         expiresIn: "12h",
       });
 
-      res.json({ message: "Login sucessful", token });
+      const returnData = {
+        token: token,
+        idUser: user.id,
+      };
+
+      res.json({ message: "Login sucessful", returnData });
     } catch (err) {
       res.status(500).json({ message: "Error on login", err });
     }

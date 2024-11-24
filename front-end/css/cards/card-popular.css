@@ -1,0 +1,126 @@
+
+.container-tabela{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 15px;
+    border-radius: 35px;
+    width: 720px;
+    height: 500px;
+    border: solid 3px #474D57;
+}
+
+/* tabela box */
+
+.tabela-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    width: 720px;
+    height: 500px;
+}
+
+.tabela-titulo{
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 500;
+    color: #F0B90B;
+    text-transform: uppercase;
+}
+
+/* tabela nome, logo e siglas */
+
+.linha-logo{
+    display: flex;
+    justify-content: space-evenly;
+    align-items:center;
+    flex-direction: row;
+    margin: 16px 0px;
+    padding: 0px 15px;
+    gap: 5px;
+    width: 720px;
+}
+
+
+.tabela-linha-moedas{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+.logo-box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 200px;
+}
+
+.valores-box{
+    width: 75px;
+}
+
+.bonus-box{
+    width: 10px;
+}
+.coin-logo{
+    height: 38px;
+    width: 38px;
+}
+
+.coin-sigla{
+    color: #fff;
+    font-size: 22px;
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 600;
+    text-align: left;
+}
+
+.coin-nome{
+    color: #474D57;
+    font-size: 14px;
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 400;
+    text-align: left;
+}
+
+/* valor */
+
+.tabela-valores{
+    color: #fff;
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+
+/* bonus */ 
+
+.bonus-valor1{
+    color: #0ECB81;
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.bonus-valor2{
+    color: #F6465D;
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 16px;
+    font-weight: 600;
+}

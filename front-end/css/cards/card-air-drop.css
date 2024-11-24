@@ -1,0 +1,98 @@
+.container-cards{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+}
+/* drop card */
+
+.container-drop{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin: 10px;
+    padding: 10px;
+
+}
+
+.drop-img{
+    width: 250px;
+    height: 280px;
+    transform: rotateX(25deg);
+}
+
+/* textos drop */
+
+.drop-titulo{
+    color: #FCD535;
+    font-size: 40px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+    letter-spacing: 0.5px;
+}
+
+.icon3{
+    font-size: 35px;
+    color: #F0B90B;
+}
+
+.drop-sub-titulo{
+    font-size: 20px;
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    color: #FFFFFF;   
+}
+
+.drop-text{
+    font-size: 24px;
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 300;
+    color: #FFFFFF;   
+}
+
+.drop-sub-text{
+    font-size: 16px;
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 100;
+    color: #EAECEF; 
+}
+
+/* btn drop */
+
+.espaco2{
+    margin-top: 50px;
+}
+
+.btn-drop{
+    padding: 15px 30px;
+    border-radius: 10px;
+    border: solid 3px #FCD535;
+    text-decoration: none;
+    color: #F0B90B;
+    font-size: 28px;
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: bold;
+    transition: .5s;
+}
+
+.btn-drop:hover{
+    border: solid 3px #F0B90B;
+    background-color: #F0B90B;
+    box-shadow: 0px 0px 15px #F0B90B;
+    color: #111;
+}

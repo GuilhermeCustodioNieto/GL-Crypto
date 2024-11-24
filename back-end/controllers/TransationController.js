@@ -35,14 +35,7 @@ const TransactionController = {
         transaction,
       });
 
-      // 1. converter o output para output.
-      // 2. ver se o valor de output é maior ou igual ao de input, para saber se a compra pode ser válida.
-      // 3. subtrair de output e adicionar em input.
-
-      // estou comprando bitcoin usando etherium
-      // quero 5 bitcoins, então vou ter que vender 15.0000000 reais
-
-      if (!cryptoInput | !cryptoOutput) {
+      if (!cryptoInput || !cryptoOutput) {
         await transaction.rollback();
         return res.status(404).json({ message: "Crypto not found." });
       }

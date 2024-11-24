@@ -27,8 +27,6 @@ const userAuthController = {
       }
 
       if (userPassword !== secondPassword) {
-        console.log(userPassword);
-        console.log(secondPassword);
 
         return res.status(400).json("The passwords aren't equals.");
       } else if (age < 18) {

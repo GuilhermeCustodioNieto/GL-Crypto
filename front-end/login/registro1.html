@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro 1</title>
+
+    <!-- Iconify Script -->
+    <script src="https://code.iconify.design/3/3.0.0/iconify.min.js"></script>
+    <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/login.css">
+
+    <!-- Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+</head>
+<body  class="fundo centro">
+    <main>
+        <!-- inicio do card REGISTER I-->
+        <section class="container-principal">
+
+            <!-- Cabeçalho - LOGOTIPO - RETORNAR-->
+            <header class="header-login"> 
+                <img  class="logotipo" src="../imgs/logo.gif" alt="logotipo">
+                <a href="../index.html">
+                    <span class="iconify seta" data-icon="majesticons:arrow-up-line" data-inline="false"></span>
+                </a>
+            </header>
+
+            <h2 class="sub-titulo">REGISTER I</h2>
+
+                <form action="/login" class="formulario">  <!-- AQUI PROVAVELMENTE É COM TU GUI (SE FOSSE PRA EU FAZER ESSA PARTE VACILEI E NÃO ME TOQUEI)-->
+
+                    <div class="coluna">
+                        <label for="nome-user" class="label-login">Nome Completo</label>
+                        <input type="text" id="name-user" name="personalName" required class="input-login">
+                    </div>
+                    
+                    <div class="coluna">
+                        <label for="cpf-user" class="label-login">CPF</label>
+                        <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00"  required class="input-login">
+                    </div> 
+    
+                    <div class="coluna">
+                        <label for="rg-user" class="label-login">RG</label>
+                        <input type="text" id="rg" name="rg" required class="input-login">
+                    </div>
+    
+                    <div class="coluna">
+                        <label for="data-nascimento-user" class="label-login">Data de Nascimento</label>
+                        <input type="date" id="data-nascimento" name="data-nascimento" required class="input-login">
+                    </div>
+                     
+                    <div class="linha">
+                    <input type="checkbox" id="termos" name="termos" required class="input-check">
+                    <label for="termos"><p class="texto-check"> Você concorda com todos os <a href="#" class="link-simples">termos de serviço</a></p></label>
+                    </div>
+                
+                    <!-- não sou o robô fake que fiz -->
+
+                    <div class="card-captcha">
+                        <input type="checkbox" required class="captcha-check">
+                        <p class="texto-captcha">I'm not a robot</p>
+                        <img src="../imgs/captcha.png" alt="captcha-logo" class="captcha">
+                        
+                    </div>
+                    <button type="submit" class="btn-login">NEXT</button>
+                </form>
+            
+        </section>
+    </main>
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../js/register.js"></script>
+</body>
+</html>

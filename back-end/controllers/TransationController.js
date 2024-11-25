@@ -290,8 +290,8 @@ const TransactionController = {
       });
     }
   },
-  converterBetweenCryptos: async (req, res) => {
-    const { idCryptoInput, idCryptoOutput } = req.body;
+  convertBetweenCurrencies: async (req, res) => {
+    const { idCryptoInput, idCryptoOutput, balance } = req.body;
 
     const cryptoInput = await Crypto.findByPk(idCryptoInput, {
       include: { model: Money }, // Inclui a relação com Money
@@ -325,7 +325,9 @@ const TransactionController = {
       outputAbbreviation
     );
 
-    res.json({ "Converted value": conversionRate });
+    const output = Number(conversionRate) * Number(balance);
+
+    res.json({ "Converted value": output });
   },
 };
 

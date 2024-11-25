@@ -32,6 +32,7 @@ const TransactionController = {
       });
       const cryptoInput = await Crypto.findByPk(idCryptoInput, {
         include: { model: Money }, // Inclui a relação com Money
+
         transaction,
       });
 

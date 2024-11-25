@@ -1,0 +1,128 @@
+/* Header */
+
+.container-header{
+    width: 100%;
+    min-height: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    margin: 0px 10px 50px 10px;
+}
+
+.section-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    margin: 25px;
+}
+
+.nav-bar{
+    margin: 0px 35px;
+}
+
+/* links de navegação */
+
+.links-header{
+    text-decoration: none;
+    color: #eee;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.links-header:hover{
+    text-decoration: underline #F0B90B;
+}
+
+/* links de login e cadastro */
+
+.box-link{
+    border-radius: 15px;
+    border: 1.5px #474D57 solid;
+    padding: 15px 25px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #D9D9D9;
+    font-family: "Dosis", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 22px;
+    margin: 0 10px;
+    transition: .5s;
+}
+
+.box-link2{
+    border-radius: 15px;
+    border: 1.5px #F0B90B solid;
+    padding: 15px 25px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #F0B90B;
+    font-family: "Dosis", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 20px;
+    margin: 0 10px;
+    transition: .5s;
+}
+
+.box-link:hover{
+    color: #F0B90B;
+    border: 1.5px #F0B90B solid;
+}
+
+.box-link2:hover, .box-link2:hover .icon{
+    color: #111;
+    background-color: #F0B90B;
+}
+
+/* icon */ 
+
+.box-qr{
+    margin: 0 10px;
+    border-radius: 15px;
+    border: 3px #111 solid;
+    transition: .5s;
+}
+.qr-code{
+    margin: 10px;
+    font-size: 45px;
+    color: #F0B90B;  
+    transition: .5s;
+}
+
+.box-qr:hover{
+    border: 3px #F0B90B solid;
+}
+
+.icon{
+    margin:  3px 3px 0px 0px;
+    font-size: 24px;
+    color: #F0B90B; 
+    transition: .5s;
+}
+
+/* footer */
+
+.container-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0px 0px 25px 0px;
+}
+
+.icon-user{
+    color: #474D57;
+    height: 45px;
+    width: 45px;
+    margin: 0px 15px;
+    transition: .5s;
+}
+
+.icon-user:hover{
+    color: #f0b90f;
+}

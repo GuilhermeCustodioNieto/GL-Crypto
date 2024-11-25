@@ -15,6 +15,12 @@
 
 .centro{
     display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.centro-login{
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -59,4 +65,25 @@
 
 .link-simples:hover{
     text-decoration: underline #F0B90B;
+}
+
+.atencao{
+    color: #F0B90B;
+}
+
+.copy{
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 16px;
+    color: #eee;
+}
+
+.link-none{
+    text-decoration: none;
+    color: #eee;
+}
+
+::selection{
+    background-color: #333;
 }

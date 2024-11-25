@@ -9,6 +9,6 @@ TransationRoutes.post(
 
   TransationController.purchaseCrypto
 );
-TransationRoutes.post("/sell", userMiddleware, TransationController.sellCrypto);
+TransationRoutes.post("/sell", TransationController.sellCrypto);
 
 export default TransationRoutes;

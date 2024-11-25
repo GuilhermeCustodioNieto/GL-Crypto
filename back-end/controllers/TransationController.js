@@ -238,14 +238,28 @@ const TransactionController = {
 
       const totalReceived = Number(amountToSell) * conversionRate;
 
-      // 5. Atualizar saldos
-      cryptoWalletSell.balance -= Number(amountToSell);
-      await cryptoWalletSell.save({ transaction });
+      // 5. Atualizar saldos usando o método update
+      await CryptoWallet.update(
+        {
+          balance: Number(cryptoWalletSell.balance) - Number(amountToSell),
+        },
+        {
+          where: { id: cryptoWalletSell.id },
+          transaction,
+        }
+      );
 
       if (cryptoWalletReceive) {
-        cryptoWalletReceive.balance =
-          Number(totalReceived) + Number(cryptoWalletReceive.balance);
-        await cryptoWalletReceive.save({ transaction });
+        await CryptoWallet.update(
+          {
+            balance:
+              Number(cryptoWalletReceive.balance) + Number(totalReceived),
+          },
+          {
+            where: { id: cryptoWalletReceive.id },
+            transaction,
+          }
+        );
       } else {
         await CryptoWallet.create(
           {
@@ -259,6 +273,7 @@ const TransactionController = {
         );
       }
 
+      // 6. Commit da transação
       await transaction.commit();
       return res.status(201).json({
         message: "Sell transaction successful.",

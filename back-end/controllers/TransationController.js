@@ -290,6 +290,43 @@ const TransactionController = {
       });
     }
   },
+  converterBetweenCryptos: async (req, res) => {
+    const { idCryptoInput, idCryptoOutput } = req.body;
+
+    const cryptoInput = await Crypto.findByPk(idCryptoInput, {
+      include: { model: Money }, // Inclui a relação com Money
+
+      transaction,
+    });
+
+    const cryptoOutput = await Crypto.findByPk(idCryptoOutput, {
+      include: { model: Money }, // Inclui a relação com Money
+      transaction,
+    });
+
+    // Verifica se os objetos foram carregados corretamente
+    if (
+      !cryptoInput ||
+      !cryptoOutput ||
+      !cryptoInput.Money ||
+      !cryptoOutput.Money
+    ) {
+      await transaction.rollback();
+      return res
+        .status(404)
+        .json({ message: "Crypto or associated Money not found." });
+    }
+
+    const inputAbbreviation = cryptoInput.Money.abbreviation;
+    const outputAbbreviation = cryptoOutput.Money.abbreviation;
+
+    const conversionRate = await getConversion(
+      inputAbbreviation,
+      outputAbbreviation
+    );
+
+    res.json({ "Converted value": conversionRate });
+  },
 };
 
 export default TransactionController;

@@ -51,16 +51,20 @@ function fazerTransacao() {
 
     try {
       // Buscando os IDs de forma assíncrona
+
       const idCryptoInput = await buscarCryptoId(dataRequest["input"]);
       const idCryptoOutput = await buscarCryptoId(dataRequest["output"]);
+
 
       // Adicionando os IDs ao dataRequest
       dataRequest["idCryptoInput"] = idCryptoInput;
       dataRequest["idCryptoOutput"] = idCryptoOutput;
+
       dataRequest["idUser"] = userId
 
       console.log("Data Request:", dataRequest);
       console.log(token);
+
 
       // Enviando os dados
       await axios.post(
@@ -78,7 +82,9 @@ function fazerTransacao() {
       );
 
       alert("Transação realizada com sucesso!");
+
 //      window.location.href = "../usuario/usuario.html";
+
     } catch (error) {
       console.error("Erro ao realizar a transação:", error);
       alert("Erro ao realizar a transação.");

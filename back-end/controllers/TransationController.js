@@ -134,6 +134,127 @@ const TransactionController = {
       });
     }
   },
+  sellCrypto: async (req, res) => {
+    const transaction = await sequelize.transaction();
+    try {
+      const { idCryptoSell, idUser, amountToSell, idCryptoReceive } = req.body;
+
+      if (!idCryptoSell || !idUser || !amountToSell || !idCryptoReceive) {
+        return res.status(400).json({ message: "Missing required fields." });
+      }
+
+      // 1. Buscar usuário com a carteira
+      const user = await User.findByPk(idUser, {
+        include: [{ model: Wallet, as: "wallet" }],
+        transaction,
+      });
+
+      if (!user || !user.wallet) {
+        await transaction.rollback();
+        return res.status(404).json({ message: "User or wallet not found." });
+      }
+
+      const wallet = await Wallet.findByPk(user.walletId, {
+        include: [{ model: CryptoWallet, as: "cryptoWallets" }],
+        transaction,
+      });
+
+      // 2. Buscar informações das criptos
+      const cryptoSell = await Crypto.findByPk(idCryptoSell, {
+        include: { model: Money },
+        transaction,
+      });
+
+      const cryptoReceive = await Crypto.findByPk(idCryptoReceive, {
+        include: { model: Money },
+        transaction,
+      });
+
+      if (
+        !cryptoSell ||
+        !cryptoReceive ||
+        !cryptoSell.Money ||
+        !cryptoReceive.Money
+      ) {
+        await transaction.rollback();
+        return res
+          .status(404)
+          .json({ message: "Crypto or associated Money not found." });
+      }
+
+      const sellAbbreviation = cryptoSell.Money.abbreviation;
+      const receiveAbbreviation = cryptoReceive.Money.abbreviation;
+
+      // 3. Buscar carteiras de criptomoedas existentes
+      const cryptoWalletSell = wallet.cryptoWallets.find(
+        (cw) => cw.moneyTypeId === idCryptoSell
+      );
+      const cryptoWalletReceive = wallet.cryptoWallets.find(
+        (cw) => cw.moneyTypeId === idCryptoReceive
+      );
+
+      if (
+        !cryptoWalletSell ||
+        Number(cryptoWalletSell.balance) < amountToSell
+      ) {
+        await transaction.rollback();
+        return res
+          .status(400)
+          .json({ message: "Insufficient balance in sell wallet." });
+      }
+
+      // 4. Obter a taxa de conversão
+      const conversionRate = await getConversion(
+        sellAbbreviation,
+        receiveAbbreviation
+      );
+
+      if (!conversionRate) {
+        await transaction.rollback();
+        return res
+          .status(500)
+          .json({ message: "Error retrieving conversion rate." });
+      }
+
+      const totalReceived = Number(amountToSell) * conversionRate;
+
+      // 5. Atualizar saldos
+      cryptoWalletSell.balance -= Number(amountToSell);
+      await cryptoWalletSell.save({ transaction });
+
+      if (cryptoWalletReceive) {
+        cryptoWalletReceive.balance =
+          Number(totalReceived) + Number(cryptoWalletReceive.balance);
+        await cryptoWalletReceive.save({ transaction });
+      } else {
+        await CryptoWallet.create(
+          {
+            walletId: wallet.id,
+            moneyTypeId: idCryptoReceive,
+            balance: Number(totalReceived),
+            lastPurchase: new Date(),
+            totalInDollar: cryptoReceive.valueInDollar * Number(totalReceived),
+          },
+          { transaction }
+        );
+      }
+
+      await transaction.commit();
+      return res.status(201).json({
+        message: "Sell transaction successful.",
+        wallet: await Wallet.findByPk(wallet.id, {
+          include: [{ model: CryptoWallet, as: "cryptoWallets" }],
+        }),
+      });
+    } catch (error) {
+      await transaction.rollback();
+      console.error("Error in sellCrypto:", error);
+      return res.status(500).json({
+        message: "Error processing transaction.",
+        error: error.message,
+      });
+    }
+  },
 };
 
 export default TransactionController;

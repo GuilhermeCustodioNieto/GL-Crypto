@@ -6,7 +6,7 @@ const TransationRoutes = express.Router();
 
 TransationRoutes.post(
   "/buy",
-  userMiddleware,
+
   TransationController.purchaseCrypto
 );
 TransationRoutes.post("/sell", userMiddleware, TransationController.sellCrypto);

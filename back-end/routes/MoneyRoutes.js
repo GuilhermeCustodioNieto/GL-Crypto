@@ -6,13 +6,6 @@ import RealMoneyController from "../controllers/money/RealMoneyController.js";
 
 /**
  * @swagger
- * tags:
- *   name: Money
- *   description: Rota para o gerenciamento das Moneys.
- */
-
-/**
- * @swagger
  * /money/cryptos:
  *   get:
  *     tags: [Money]

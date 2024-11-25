@@ -51,7 +51,7 @@ const CryptoWalletController = {
   },
   updateCryptoWallet: async (req, res) => {
     try {
-      const { lastPurchase, balance, totalInDollar, walletId } = req.body;
+      const { lastPurchase, balance, totalInDollar, moneyTypeId } = req.body;
 
       const cryptoWallet = await CryptoWallet.findByPk(req.params.id);
 
@@ -69,9 +69,11 @@ const CryptoWalletController = {
         res.json({ err: "Crypto Wallet not found" });
       }
     } catch (err) {
+      console.log(err);
+
       res
         .status(500)
-        .json({ message: "Error on updating of the crypto", err: err });
+        .json({ message: "Error on updating of the crypto", error: err });
     }
   },
   deleteCryptoWallet: async (req, res) => {

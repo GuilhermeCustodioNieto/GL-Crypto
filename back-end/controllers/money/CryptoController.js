@@ -4,15 +4,15 @@ import Money from "../../models/cryptos/Money.js";
 const CryptoController = {
   getAllCryptos: async (req, res) => {
     try {
-      const cryptos = await Crypto.findAll({
-        include: Money,
-      });
+      const cryptos = await Crypto.findAll();
 
       res.json(cryptos);
     } catch (err) {
+      console.log(err);
+
       res.status(500).json({
         message: "Error on get all cryptos",
-        err: err,
+        error: err,
       });
     }
   },

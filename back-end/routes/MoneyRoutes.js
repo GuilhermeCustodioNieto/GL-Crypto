@@ -13,43 +13,6 @@ import RealMoneyController from "../controllers/money/RealMoneyController.js";
 
 /**
  * @swagger
- * /money:
- *   get:
- *     tags: [Money]
- *     summary: Retorna os dados de todas as moneys
- *     responses:
- *       200:
- *         description: Busca realizada com sucesso
- *       500:
- *         description: Erro inesperado ocorreu no sistema
- */
-MoneyRoutes.get("/", MoneyController.getAllMoney);
-
-/**
- * @swagger
- * /money/{id}:
- *   get:
- *     tags: [Money]
- *     summary: Retorna um item de dinheiro pelo ID
- *     parameters:
- *       - name: id
- *         in: path
- *         required: true
- *         description: ID do item de dinheiro
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: Item de dinheiro encontrado
- *       404:
- *         description: Item de dinheiro não encontrado
- *       500:
- *         description: Erro inesperado ocorreu no sistema
- */
-MoneyRoutes.get("/:id", MoneyController.getById);
-
-/**
- * @swagger
  * /money/cryptos:
  *   get:
  *     tags: [Money]
@@ -84,6 +47,11 @@ MoneyRoutes.get("/cryptos", CryptoController.getAllCryptos);
  *         description: Erro inesperado ocorreu no sistema
  */
 MoneyRoutes.get("/cryptos/:id", CryptoController.getById);
+
+MoneyRoutes.get(
+  "/cryptos/abbreviation/:abbreviation",
+  CryptoController.getByAbbreviation
+);
 
 /**
  * @swagger
@@ -309,5 +277,42 @@ MoneyRoutes.put("/realMoney/:id", RealMoneyController.updateRealMoney);
  *         description: Erro ao remover o dinheiro real
  */
 MoneyRoutes.delete("/realMoney/:id", RealMoneyController.deleteRealMoney);
+
+/**
+ * @swagger
+ * /money:
+ *   get:
+ *     tags: [Money]
+ *     summary: Retorna os dados de todas as moneys
+ *     responses:
+ *       200:
+ *         description: Busca realizada com sucesso
+ *       500:
+ *         description: Erro inesperado ocorreu no sistema
+ */
+MoneyRoutes.get("/", MoneyController.getAllMoney);
+
+/**
+ * @swagger
+ * /money/{id}:
+ *   get:
+ *     tags: [Money]
+ *     summary: Retorna um item de dinheiro pelo ID
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID do item de dinheiro
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Item de dinheiro encontrado
+ *       404:
+ *         description: Item de dinheiro não encontrado
+ *       500:
+ *         description: Erro inesperado ocorreu no sistema
+ */
+MoneyRoutes.get("/:id", MoneyController.getById);
 
 export default MoneyRoutes;

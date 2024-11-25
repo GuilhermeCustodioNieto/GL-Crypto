@@ -41,6 +41,11 @@ MoneyRoutes.get("/cryptos", CryptoController.getAllCryptos);
  */
 MoneyRoutes.get("/cryptos/:id", CryptoController.getById);
 
+MoneyRoutes.get(
+  "/cryptos/abbreviation/:abbreviation",
+  CryptoController.getByAbbreviation
+);
+
 /**
  * @swagger
  * /money/cryptos:
@@ -265,13 +270,6 @@ MoneyRoutes.put("/realMoney/:id", RealMoneyController.updateRealMoney);
  *         description: Erro ao remover o dinheiro real
  */
 MoneyRoutes.delete("/realMoney/:id", RealMoneyController.deleteRealMoney);
-
-/**
- * @swagger
- * tags:
- *   name: Money
- *   description: Rota para o gerenciamento das Moneys.
- */
 
 /**
  * @swagger

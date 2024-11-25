@@ -4,7 +4,11 @@ import Money from "../../models/cryptos/Money.js";
 const CryptoController = {
   getAllCryptos: async (req, res) => {
     try {
-      const cryptos = await Crypto.findAll();
+      const cryptos = await Crypto.findAll({
+        include: {
+          model: Money, // Inclui a relação com Money
+          as: "Money", // Certifique-se de usar o alias correto, se houver
+        }});
 
       res.json(cryptos);
     } catch (err) {

@@ -56,7 +56,6 @@ const CryptoWalletController = {
       const cryptoWallet = await CryptoWallet.findByPk(req.params.id);
 
       if (cryptoWallet) {
-        const moneyTypeIdLasted = cryptoWallet.moneyTypeId;
         await cryptoWallet.update({
           lastPurchase,
           balance,

@@ -54,12 +54,14 @@ function fazerTransacao() {
 
       console.log(dataRequest["pagar"]);
 
-      const idCryptoInput = await buscarCryptoId(dataRequest["receber"]);
-      const idCryptoOutput = await buscarCryptoId(dataRequest["pagar"]);
+      const idCryptoReceive = await buscarCryptoId(
+        dataRequest["idCryptoReceive"]
+      );
+      const idCryptoSell = await buscarCryptoId(dataRequest["idCryptoSell"]);
 
       // Adicionando os IDs ao dataRequest
-      dataRequest["idCryptoInput"] = idCryptoInput;
-      dataRequest["idCryptoOutput"] = idCryptoOutput;
+      dataRequest["idCryptoReceive"] = idCryptoReceive;
+      dataRequest["idCryptoSell"] = idCryptoSell;
 
       dataRequest["idUser"] = userId;
 
@@ -68,7 +70,7 @@ function fazerTransacao() {
 
       // Enviando os dados
       await axios.post(
-        "http://localhost:3000/transation/buy",
+        "http://localhost:3000/transation/sell",
         {
           ...dataRequest,
           userId,

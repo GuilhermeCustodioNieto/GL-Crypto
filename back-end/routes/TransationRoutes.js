@@ -10,5 +10,9 @@ TransationRoutes.post(
   TransationController.purchaseCrypto
 );
 TransationRoutes.post("/sell", TransationController.sellCrypto);
+TransationRoutes.post(
+  "/convert",
+  TransationController.convertBetweenCurrencies
+);
 
 export default TransationRoutes;

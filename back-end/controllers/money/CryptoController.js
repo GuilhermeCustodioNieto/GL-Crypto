@@ -8,7 +8,8 @@ const CryptoController = {
         include: {
           model: Money, // Inclui a relação com Money
           as: "Money", // Certifique-se de usar o alias correto, se houver
-        }});
+        },
+      });
 
       res.json(cryptos);
     } catch (err) {
@@ -67,7 +68,8 @@ const CryptoController = {
 
   createNewCrypto: async (req, res) => {
     try {
-      const { name, quantity, abbreviation, author, valueInDollar } = req.body;
+      const { name, imgUrl, quantity, abbreviation, author, valueInDollar } =
+        req.body;
 
       const newCrypto = await Crypto.create({
         quantity,
@@ -77,6 +79,7 @@ const CryptoController = {
 
       const newMoney = await Money.create({
         name,
+        imgUrl,
         abbreviation,
         type: "Crypto",
         cryptoId: newCrypto.id,
@@ -97,7 +100,8 @@ const CryptoController = {
   updateCrypto: async (req, res) => {
     try {
       const crypto = await Crypto.findByPk(req.params.id);
-      const { name, quantity, abbreviation, author, valueInDollar } = req.body;
+      const { name, imgUrl, quantity, abbreviation, author, valueInDollar } =
+        req.body;
 
       if (crypto) {
         await crypto.update({ quantity, author, valueInDollar });
@@ -107,7 +111,7 @@ const CryptoController = {
 
       const money = await Money.findOne({ where: { cryptoId: crypto.id } });
       if (money) {
-        await money.update({ name, abbreviation });
+        await money.update({ name, imgUrl, abbreviation });
         res.json({ crypto, money });
       } else {
         res.status(404).json({ message: "Crypto not found" });

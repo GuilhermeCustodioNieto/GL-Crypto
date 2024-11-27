@@ -25,11 +25,48 @@ function adicionarCriptos() {
 
 adicionarCriptos();
 
+async function alterarValorCompra(idCryptoInput, idCryptoOutput, balance) {
+  try {
+    const response = await axios.post(
+      "http://localhost:3000/transation/convert",
+      {
+        idCryptoInput: idCryptoInput,
+        idCryptoOutput: idCryptoOutput,
+        balance: balance,
+      }
+    );
+
+    document.querySelector(".pagar-input").value =
+      response.data["converted-value"];
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+document
+  .querySelector(".receber-input")
+  .addEventListener("change", async (event) => {
+    event.preventDefault();
+
+    const idCryptoInput = await buscarCryptoId(
+      document.querySelector(".moedas2").value
+    );
+    const idCryptoOutput = await buscarCryptoId(
+      document.querySelector(".moedas1").value
+    );
+
+    const balance = document.querySelector(".receber-input").value;
+    alterarValorCompra(idCryptoInput, idCryptoOutput, balance);
+  });
+
 async function buscarCryptoId(abbreviation) {
   try {
     const response = await axios.get(
       `http://localhost:3000/money/cryptos/abbreviation/${abbreviation}`
     );
+
+    console.log(response.data.id);
+
     return response.data.id;
   } catch (error) {
     console.error(`Erro ao buscar o ID para ${abbreviation}:`, error);

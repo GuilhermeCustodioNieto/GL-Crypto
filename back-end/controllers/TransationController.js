@@ -293,15 +293,14 @@ const TransactionController = {
   convertBetweenCurrencies: async (req, res) => {
     const { idCryptoInput, idCryptoOutput, balance } = req.body;
 
+    console.log(req.body);
+
     const cryptoInput = await Crypto.findByPk(idCryptoInput, {
       include: { model: Money }, // Inclui a relação com Money
-
-      transaction,
     });
 
     const cryptoOutput = await Crypto.findByPk(idCryptoOutput, {
       include: { model: Money }, // Inclui a relação com Money
-      transaction,
     });
 
     // Verifica se os objetos foram carregados corretamente
@@ -311,7 +310,6 @@ const TransactionController = {
       !cryptoInput.Money ||
       !cryptoOutput.Money
     ) {
-      await transaction.rollback();
       return res
         .status(404)
         .json({ message: "Crypto or associated Money not found." });
@@ -327,7 +325,7 @@ const TransactionController = {
 
     const output = Number(conversionRate) * Number(balance);
 
-    res.json({ "Converted value": output });
+    res.json({ "converted-value": output });
   },
 };
 

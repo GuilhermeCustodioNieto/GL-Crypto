@@ -25,6 +25,42 @@ function adicionarCriptos() {
 
 adicionarCriptos();
 
+async function alterarValorCompra(idCryptoInput, idCryptoOutput, balance) {
+  try {
+    const response = await axios.post(
+      "http://localhost:3000/transation/convert",
+      {
+        idCryptoInput: idCryptoInput,
+        idCryptoOutput: idCryptoOutput,
+        balance: balance,
+      }
+    );
+
+    console.log(response.data);
+
+    document.querySelector(".receber-input").value =
+      response.data["converted-value"];
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+document
+  .querySelector(".pagar-input")
+  .addEventListener("change", async (event) => {
+    event.preventDefault();
+
+    const idCryptoInput = await buscarCryptoId(
+      document.querySelector(".moedas1").value
+    );
+    const idCryptoOutput = await buscarCryptoId(
+      document.querySelector(".moedas2").value
+    );
+
+    const balance = document.querySelector(".pagar  -input").value;
+    alterarValorCompra(idCryptoInput, idCryptoOutput, balance);
+  });
+
 async function buscarCryptoId(abbreviation) {
   try {
     const response = await axios.get(

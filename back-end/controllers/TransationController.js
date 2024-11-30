@@ -36,9 +36,9 @@ const TransactionController = {
   purchaseCrypto: async (req, res) => {
     const transaction = await sequelize.transaction();
     try {
-      const { idCryptoInput, idUser, balance, idCryptoOutput } = req.body;
+      const { idMoneyInput, idUser, balance, idMoneyOutput } = req.body;
 
-      if (!idCryptoInput || !idUser || !balance || !idCryptoOutput) {
+      if (!idMoneyInput || !idUser || !balance || !idMoneyOutput) {
         return res.status(400).json({ message: "Missing required fields." });
       }
 
@@ -57,39 +57,31 @@ const TransactionController = {
         include: [{ model: CryptoWallet, as: "cryptoWallets" }],
         transaction,
       });
-      const cryptoInput = await Crypto.findByPk(idCryptoInput, {
-        include: { model: Money }, // Inclui a relação com Money
-
+      const moneyInput = await Money.findByPk(idMoneyInput, {
         transaction,
       });
 
-      const cryptoOutput = await Crypto.findByPk(idCryptoOutput, {
-        include: { model: Money }, // Inclui a relação com Money
+      const moneyOutput = await Money.findByPk(idMoneyOutput, {
         transaction,
       });
 
       // Verifica se os objetos foram carregados corretamente
-      if (
-        !cryptoInput ||
-        !cryptoOutput ||
-        !cryptoInput.Money ||
-        !cryptoOutput.Money
-      ) {
+      if (!moneyInput || !moneyOutput) {
         await transaction.rollback();
         return res
           .status(404)
           .json({ message: "Crypto or associated Money not found." });
       }
 
-      const inputAbbreviation = cryptoInput.Money.abbreviation;
-      const outputAbbreviation = cryptoOutput.Money.abbreviation;
+      const inputAbbreviation = moneyInput.abbreviation;
+      const outputAbbreviation = moneyOutput.abbreviation;
 
       // 3. Buscar carteiras de criptomoedas existentes
       const cryptoWalletInput = wallet.cryptoWallets.find(
-        (cw) => cw.moneyTypeId === idCryptoInput
+        (cw) => cw.moneyTypeId === idMoneyInput
       );
       const cryptoWalletOutput = wallet.cryptoWallets.find(
-        (cw) => cw.moneyTypeId === idCryptoOutput
+        (cw) => cw.moneyTypeId === idMoneyOutput
       );
 
       if (!cryptoWalletOutput) {
@@ -154,10 +146,10 @@ const TransactionController = {
         await CryptoWallet.create(
           {
             walletId: wallet.id,
-            moneyTypeId: idCryptoInput,
+            moneyTypeId: idMoneyInput,
             balance: Number(balance),
             lastPurchase: new Date(),
-            totalInDollar: cryptoInput.valueInDollar * Number(balance),
+            totalInDollar: moneyInput.valueInDollar * Number(balance),
           },
           { transaction }
         );
@@ -170,8 +162,8 @@ const TransactionController = {
         date: new Date(),
         status: "Complete",
         tipoTransacao: "Buy",
-        moneyId: idCryptoInput,
-        paymentMoneyId: idCryptoOutput,
+        moneyId: idMoneyInput,
+        paymentMoneyId: idMoneyOutput,
         senderId: idUser,
         receiverId: receiverUserId || null,
       });
@@ -196,9 +188,9 @@ const TransactionController = {
   sellCrypto: async (req, res) => {
     const transaction = await sequelize.transaction();
     try {
-      const { idCryptoSell, idUser, amountToSell, idCryptoReceive } = req.body;
+      const { idMoneySell, idUser, amountToSell, idMoneyReceive } = req.body;
 
-      if (!idCryptoSell || !idUser || !amountToSell || !idCryptoReceive) {
+      if (!idMoneySell || !idUser || !amountToSell || !idMoneyReceive) {
         return res.status(400).json({ message: "Missing required fields." });
       }
 
@@ -219,43 +211,33 @@ const TransactionController = {
       });
 
       // 2. Buscar informações das criptos
-      const cryptoSell = await Crypto.findByPk(idCryptoSell, {
-        include: { model: Money },
+      const moneySell = await Money.findByPk(idMoneySell, {
         transaction,
       });
 
-      const cryptoReceive = await Crypto.findByPk(idCryptoReceive, {
-        include: { model: Money },
+      const moneyReceive = await Crypto.findByPk(idMoneyReceive, {
         transaction,
       });
 
-      if (
-        !cryptoSell ||
-        !cryptoReceive ||
-        !cryptoSell.Money ||
-        !cryptoReceive.Money
-      ) {
+      if (!moneySell || !moneyReceive) {
         await transaction.rollback();
         return res
           .status(404)
           .json({ message: "Crypto or associated Money not found." });
       }
 
-      const sellAbbreviation = cryptoSell.Money.abbreviation;
-      const receiveAbbreviation = cryptoReceive.Money.abbreviation;
+      const sellAbbreviation = moneySell.abbreviation;
+      const receiveAbbreviation = moneyReceive.abbreviation;
 
       // 3. Buscar carteiras de criptomoedas existentes
-      const cryptoWalletSell = wallet.cryptoWallets.find(
-        (cw) => cw.moneyTypeId === idCryptoSell
+      const moneyWalletSell = wallet.cryptoWallets.find(
+        (cw) => cw.moneyTypeId === idMoneySell
       );
-      const cryptoWalletReceive = wallet.cryptoWallets.find(
-        (cw) => cw.moneyTypeId === idCryptoReceive
+      const moneyWalletReceive = wallet.cryptoWallets.find(
+        (cw) => cw.moneyTypeId === idMoneyReceive
       );
 
-      if (
-        !cryptoWalletSell ||
-        Number(cryptoWalletSell.balance) < amountToSell
-      ) {
+      if (!moneyWalletSell || Number(moneyWalletSell.balance) < amountToSell) {
         await transaction.rollback();
         return res
           .status(400)
@@ -280,22 +262,21 @@ const TransactionController = {
       // 5. Atualizar saldos usando o método update
       await CryptoWallet.update(
         {
-          balance: Number(cryptoWalletSell.balance) - Number(amountToSell),
+          balance: Number(moneyWalletSell.balance) - Number(amountToSell),
         },
         {
-          where: { id: cryptoWalletSell.id },
+          where: { id: moneyWalletSell.id },
           transaction,
         }
       );
 
-      if (cryptoWalletReceive) {
+      if (moneyWalletReceive) {
         await CryptoWallet.update(
           {
-            balance:
-              Number(cryptoWalletReceive.balance) + Number(totalReceived),
+            balance: Number(moneyWalletReceive.balance) + Number(totalReceived),
           },
           {
-            where: { id: cryptoWalletReceive.id },
+            where: { id: moneyWalletReceive.id },
             transaction,
           }
         );
@@ -320,8 +301,8 @@ const TransactionController = {
         date: new Date(),
         status: "Complete",
         tipoTransacao: "Sell",
-        moneyId: idCryptoSell,
-        paymentMoneyId: idCryptoReceive,
+        moneyId: idMoneySell,
+        paymentMoneyId: idMoneyReceive,
         receiverId: idUser,
         senderId: null,
       });
@@ -341,33 +322,25 @@ const TransactionController = {
       });
     }
   },
+  deposit: async (req, res) => {
+    const { balance, idUser, typePaymet } = req.body;
+  },
   convertBetweenCurrencies: async (req, res) => {
-    const { idCryptoInput, idCryptoOutput, balance } = req.body;
+    const { idMoneyInput, idMoneyOutput, balance } = req.body;
 
-    console.log(req.body);
+    const moneyInput = await Money.findByPk(idMoneyInput, {});
 
-    const cryptoInput = await Crypto.findByPk(idCryptoInput, {
-      include: { model: Money }, // Inclui a relação com Money
-    });
-
-    const cryptoOutput = await Crypto.findByPk(idCryptoOutput, {
-      include: { model: Money }, // Inclui a relação com Money
-    });
+    const moneyOutput = await Money.findByPk(idMoneyOutput, {});
 
     // Verifica se os objetos foram carregados corretamente
-    if (
-      !cryptoInput ||
-      !cryptoOutput ||
-      !cryptoInput.Money ||
-      !cryptoOutput.Money
-    ) {
+    if (!moneyInput || !moneyOutput) {
       return res
         .status(404)
         .json({ message: "Crypto or associated Money not found." });
     }
 
-    const inputAbbreviation = cryptoInput.Money.abbreviation;
-    const outputAbbreviation = cryptoOutput.Money.abbreviation;
+    const inputAbbreviation = moneyInput.abbreviation;
+    const outputAbbreviation = moneyOutput.abbreviation;
 
     const conversionRate = await getConversion(
       inputAbbreviation,

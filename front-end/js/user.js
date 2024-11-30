@@ -56,27 +56,84 @@ function formatarDados() {
   document.getElementById("rg").innerHTML = dataUser.rg;
   document.getElementById("id").innerHTML = dataUser.id;
 
-  dataUser.wallet.cryptoWallets.forEach((value, key) => {
-    document.getElementById("tabelaCriptos").innerHTML += `
-            <div class="linha-logo">
-                <div class="logo-box">
-                  <img
-                    src="../imgs/logos/bitcoin.png"
-                    alt="logo"
-                    class="coin-logo"
-                  />
-                  <h2 class="coin-sigla">${value.moneyType.abbreviation}</h2>
-                  <p class="coin-nome">${value.moneyType.name}</p>
-                </div>
-                <div class="valores-box">
-                  <h2 class="tabela-valores">$${value.moneyType.Crypto.valueInDollar}</h2>
-                </div>
-                <div class="bonus-box">
-                  <div class="fundos-valor">
-                    <p class="texto-valor">Possui:</p>
-                    <span class="valor-conta">${value.balance}</span>
-                  </div>
-                </div>
-              </div>`;
-  });
+  async function processarCriptos(dataUser) {
+    async function buscarCryptoId(abbreviation) {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/money/abbreviation/${abbreviation}`
+        );
+        return response.data.id;
+      } catch (error) {
+        console.error(`Erro ao buscar o ID para ${abbreviation}:`, error);
+        throw error;
+      }
+    }
+
+    async function alterarValorCompra(idCryptoInput, idCryptoOutput, balance) {
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/transation/convert",
+          {
+            idMoneyInput: idCryptoInput,
+            idMoneyOutput: idCryptoOutput,
+            balance: balance,
+          }
+        );
+        return response.data["converted-value"];
+      } catch (error) {
+        console.error("Erro ao converter valor:", error);
+        throw error;
+      }
+    }
+
+    const tabelaCriptos = document.getElementById("tabelaCriptos");
+    tabelaCriptos.innerHTML = ""; // Limpa a tabela antes de adicionar novos itens
+
+    for (const value of dataUser.wallet.cryptoWallets) {
+      console.log(value);
+
+      let valor = "";
+
+      if (value.moneyType.type === "Crypto") {
+        valor = value.moneyType.Crypto.valueInDollar; // Valor já disponível
+      } else if (value.moneyType.type === "RealMoney") {
+        try {
+          const idCryptoInput = await buscarCryptoId(
+            value.moneyType.abbreviation
+          );
+          const idCryptoOutput = await buscarCryptoId("USD");
+          valor = await alterarValorCompra(idCryptoInput, idCryptoOutput, 1); // Valor convertido
+        } catch (error) {
+          console.error("Erro ao processar transação:", error);
+          valor = "Erro"; // Valor padrão em caso de erro
+        }
+      }
+
+      console.log(valor);
+
+      // Adiciona a linha na tabela
+      tabelaCriptos.innerHTML += `
+        <div class="linha-logo">
+          <div class="logo-box">
+            <img
+              src="../imgs/logos/bitcoin.png"
+              alt="logo"
+              class="coin-logo"
+            />
+            <h2 class="coin-sigla">${value.moneyType.abbreviation}</h2>
+            <p class="coin-nome">${value.moneyType.name}</p>
+          </div>
+          <div class="valores-box">
+            <h2 class="tabela-valores">$${valor}</h2>
+          </div>
+          <div class="bonus-box">
+            <div class="fundos-valor">
+              <p class="texto-valor">Possui:</p>
+              <span class="valor-conta">${value.balance}</span>
+            </div>
+          </div>
+        </div>`;
+    }
+  }
+  processarCriptos(dataUser);
 }

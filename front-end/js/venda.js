@@ -11,11 +11,11 @@ function adicionarCriptos() {
   let moedas2 = document.querySelector(".moedas2");
 
   axios
-    .get("http://localhost:3000/money/cryptos/")
+    .get("http://localhost:3000/money/")
     .then((response) => {
       response.data.forEach((element) => {
-        moedas1.innerHTML += `<option class="opcao-select" value="${element.Money.abbreviation}" >${element.Money.abbreviation}</option>`;
-        moedas2.innerHTML += `<option class="opcao-select" value="${element.Money.abbreviation}" >${element.Money.abbreviation}</option>`;
+        moedas1.innerHTML += `<option class="opcao-select" value="${element.abbreviation}" >${element.abbreviation}</option>`;
+        moedas2.innerHTML += `<option class="opcao-select" value="${element.abbreviation}" >${element.abbreviation}</option>`;
       });
     })
     .catch((error) => {

@@ -68,11 +68,9 @@ const CryptoController = {
 
   createNewCrypto: async (req, res) => {
     try {
-      const { name, imgUrl, quantity, abbreviation, author, valueInDollar } =
-        req.body;
+      const { name, imgUrl, abbreviation, author, valueInDollar } = req.body;
 
       const newCrypto = await Crypto.create({
-        quantity,
         author,
         valueInDollar,
       });
@@ -100,11 +98,10 @@ const CryptoController = {
   updateCrypto: async (req, res) => {
     try {
       const crypto = await Crypto.findByPk(req.params.id);
-      const { name, imgUrl, quantity, abbreviation, author, valueInDollar } =
-        req.body;
+      const { name, imgUrl, abbreviation, author, valueInDollar } = req.body;
 
       if (crypto) {
-        await crypto.update({ quantity, author, valueInDollar });
+        await crypto.update({ author, valueInDollar });
       } else {
         res.status(404).json({ message: "Crypto not found" });
       }

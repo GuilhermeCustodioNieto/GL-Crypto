@@ -25,12 +25,8 @@ Transation.init(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        isIn: [["Sell", "Buy"]],
+        isIn: [["Sell", "Buy", "Deposit"]],
       },
-    },
-    receiver: {
-      type: DataTypes.INTEGER, // Este é o atributo no modelo
-      allowNull: true,
     },
   },
   {

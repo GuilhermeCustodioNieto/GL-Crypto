@@ -308,4 +308,9 @@ MoneyRoutes.get("/", MoneyController.getAllMoney);
  */
 MoneyRoutes.get("/:id", MoneyController.getById);
 
+MoneyRoutes.get(
+  "/abbreviation/:abbreviation",
+  MoneyController.getByAbbreviation
+);
+
 export default MoneyRoutes;

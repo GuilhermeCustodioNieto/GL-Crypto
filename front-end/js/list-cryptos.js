@@ -1,10 +1,10 @@
 async function getList() {
-  const response = await axios.get("http://localhost:3000/money/cryptos/");
+  const response = await axios.get("http://localhost:3000/money/");
 
   return response.data;
 }
 
-function mudarInfos(crypto) {
+function mudarInfos(money) {
   function definirValorizacao() {
     const valorization = Math.random();
     const isSum = Math.random() > 0.5;
@@ -20,7 +20,14 @@ function mudarInfos(crypto) {
     return `<h3 class="${bonusValor}${valorization.toFixed(2)}%</h3>`;
   }
 
-  const imgUrl = crypto["Money"]["imgUrl"];
+  const imgUrl = money["imgUrl"];
+
+  let valor = "";
+  if (money.type == "Crypto") {
+    valor = money.Crypto.valueInDollar;
+  } else if (money.type == "RealMoney") {
+    valor = money.quantity;
+  }
 
   let template = `
     <div class="linha-logo">
@@ -30,11 +37,11 @@ function mudarInfos(crypto) {
                   alt="logo"
                   class="coin-logo"
                 />
-                <h2 class="coin-sigla">${crypto.Money.abbreviation}</h2>
-                <p class="coin-nome">${crypto.Money.name}</p>
+                <h2 class="coin-sigla">${money.abbreviation}</h2>
+                <p class="coin-nome">${money.name}</p>
               </div>
               <div class="valores-box">
-                <h2 class="tabela-valores">${crypto.valueInDollar}</h2>
+                <h2 class="tabela-valores">${valor}</h2>
               </div>
               <div class="bonus-box">
                 ${definirValorizacao()}
@@ -53,8 +60,8 @@ async function main() {
       mudarInfos(list[i]);
     }
   } else {
-    list.forEach((crypto) => {
-      mudarInfos(crypto);
+    list.forEach((money) => {
+      mudarInfos(money);
     });
   }
 }

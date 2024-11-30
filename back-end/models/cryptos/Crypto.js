@@ -10,10 +10,7 @@ Crypto.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    quantity: {
-      type: DataTypes.BIGINT,
-      allowNull: false,
-    },
+
     author: {
       type: DataTypes.STRING,
       allowNull: false,

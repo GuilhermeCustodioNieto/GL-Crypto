@@ -36,7 +36,7 @@ const RealMoneyController = {
 
   createNewRealMoney: async (req, res) => {
     try {
-      const { name, country, abbreviation, value, symbol } = req.body;
+      const { name, country, abbreviation, value, symbol, imgUrl } = req.body;
 
       const newRealMoney = await RealMoney.create({
         country,
@@ -46,6 +46,7 @@ const RealMoneyController = {
 
       const newMoney = await Money.create({
         name,
+        imgUrl,
         abbreviation,
         type: "RealMoney",
         realMoneyId: newRealMoney.id,
@@ -53,6 +54,8 @@ const RealMoneyController = {
 
       res.status(201).json({ realMoney: newRealMoney, money: newMoney });
     } catch (err) {
+      console.log(err);
+
       res
         .status(500)
         .json({ message: "Error on creation of the real money", err: err });
@@ -63,7 +66,7 @@ const RealMoneyController = {
     try {
       const realMoney = await RealMoney.findByPk(req.params.id);
       if (realMoney) {
-        const { name, country, abbreviation, value, symbol } = req.body;
+        const { name, country, abbreviation, value, symbol, imgUrl } = req.body;
 
         await realMoney.update({ country, value, symbol });
 
@@ -71,7 +74,7 @@ const RealMoneyController = {
           where: { realMoneyId: realMoney.id },
         });
         if (money) {
-          await money.update({ name, abbreviation });
+          await money.update({ name, imgUrl, abbreviation });
         }
 
         res.json({ realMoney, money });

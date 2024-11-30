@@ -387,6 +387,105 @@ const TransactionController = {
       res.status(500).json({ message: "Error on get history", err: error });
     }
   },
+  depositRealMoney: async (req, res) => {
+    const transaction = await sequelize.transaction();
+    try {
+      const { balance, RealMoneyId, idUser } = req.body;
+
+      // Verifica se os parâmetros necessários foram fornecidos
+      if (!balance || !RealMoneyId || !idUser) {
+        return res.status(400).json({ message: "Missing required fields." });
+      }
+
+      // 1. Buscar usuário e sua carteira
+      const user = await User.findByPk(idUser, {
+        include: [{ model: Wallet, as: "wallet" }],
+        transaction,
+      });
+
+      if (!user || !user.wallet) {
+        await transaction.rollback();
+        return res.status(404).json({ message: "User or wallet not found." });
+      }
+
+      const wallet = await Wallet.findByPk(user.walletId, {
+        include: [{ model: CryptoWallet, as: "cryptoWallets" }],
+        transaction,
+      });
+
+      // 2. Buscar o tipo de Money (RealMoney)
+      const realMoney = await RealMoney.findByPk(RealMoneyId, {
+        include: { model: Money },
+        transaction,
+      });
+
+      console.log(realMoney);
+
+      if (!realMoney) {
+        await transaction.rollback();
+        return res.status(404).json({ message: "RealMoney type not found." });
+      }
+
+      // 3. Buscar a carteira de RealMoney na CryptoWallet
+      let realMoneyWallet = wallet.cryptoWallets.find(
+        (cw) => cw.moneyTypeId === realMoney.Money.id
+      );
+
+      if (!realMoneyWallet) {
+        // 4. Caso não exista, criar a carteira de RealMoney dentro da CryptoWallet
+        realMoneyWallet = await CryptoWallet.create(
+          {
+            walletId: wallet.id,
+            moneyTypeId: RealMoneyId,
+            balance: Number(balance),
+            totalInDollar: realMoney.valueInDollar * Number(balance),
+          },
+          { transaction }
+        );
+      } else {
+        // 5. Caso já exista, atualizar o saldo da carteira de RealMoney
+        realMoneyWallet = await CryptoWallet.update(
+          {
+            balance: Number(realMoneyWallet.balance) + Number(balance),
+            totalInDollar:
+              Number(realMoneyWallet.totalInDollar) + Number(balance),
+          },
+          {
+            where: { id: realMoneyWallet.id },
+            transaction,
+          }
+        );
+      }
+
+      await Transation.create({
+        amount: balance,
+        date: new Date(),
+        status: "Complete",
+        tipoTransacao: "Deposit",
+        moneyId: RealMoneyId,
+        senderId: idUser,
+        receiverId: null, // Não há destinatário específico em depósitos
+      });
+
+      // 7. Finaliza a transação
+      await transaction.commit();
+
+      return res.status(201).json({
+        message: "Deposit successful.",
+        wallet: await Wallet.findByPk(wallet.id, {
+          include: [{ model: CryptoWallet, as: "cryptoWallets" }],
+        }),
+      });
+    } catch (error) {
+      // Em caso de erro, realiza o rollback da transação
+      await transaction.rollback();
+      console.error("Error in depositRealMoney:", error);
+      return res.status(500).json({
+        message: "Error processing deposit.",
+        error: error.message,
+      });
+    }
+  },
 };
 
 export default TransactionController;

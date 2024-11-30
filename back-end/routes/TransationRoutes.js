@@ -10,7 +10,7 @@ TransationRoutes.post(
   "/convert",
   TransationController.convertBetweenCurrencies
 );
-TransationRoutes.post("/deposit", TransationController.deposit);
+TransationRoutes.post("/deposit", TransationController.depositRealMoney);
 TransationRoutes.get("/get-history", TransationController.getAllTransactions);
 
 export default TransationRoutes;

@@ -14,5 +14,6 @@ TransationRoutes.post(
   "/convert",
   TransationController.convertBetweenCurrencies
 );
+TransationRoutes.get("/get-history", TransationController.getAllTransactions);
 
 export default TransationRoutes;

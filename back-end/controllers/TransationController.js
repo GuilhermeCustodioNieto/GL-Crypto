@@ -5,6 +5,33 @@ import sequelize from "../config/connection.js";
 import User from "../models/User.js";
 import getConversion from "../utils/MoneyConversor.js";
 import Money from "../models/cryptos/Money.js";
+import Transation from "../models/Transation.js";
+import RealMoney from "../models/cryptos/RealMoney.js";
+
+function createNewTransation(
+  amount,
+  date,
+  status,
+  money,
+  paymentMoney,
+  sender,
+  receiver,
+  tipoTransacao
+) {
+  const transaction = Transation.create({
+    amount,
+    date,
+    status,
+    money,
+    paymentMoney,
+    sender,
+    receiver,
+    tipoTransacao,
+  });
+
+  return transaction;
+}
+
 const TransactionController = {
   purchaseCrypto: async (req, res) => {
     const transaction = await sequelize.transaction();
@@ -93,8 +120,6 @@ const TransactionController = {
       const totalOutputRequired = Number(balance) * conversionRate;
       const totalInputRequired = Number(balance) * conversionRateInput;
 
-      console.log(totalOutputRequired);
-
       // 5. Validar saldo suficiente
       if (Number(cryptoWalletOutput.balance) < totalOutputRequired) {
         await transaction.rollback();
@@ -138,7 +163,21 @@ const TransactionController = {
         );
       }
 
+      const receiverUserId = null;
+
+      await Transation.create({
+        amount: balance,
+        date: new Date(),
+        status: "Complete",
+        tipoTransacao: "Buy",
+        moneyId: idCryptoInput,
+        paymentMoneyId: idCryptoOutput,
+        senderId: idUser,
+        receiverId: receiverUserId || null,
+      });
+
       await transaction.commit();
+
       return res.status(201).json({
         message: "Transaction successful.",
         wallet: await Wallet.findByPk(wallet.id, {
@@ -275,6 +314,18 @@ const TransactionController = {
 
       // 6. Commit da transação
       await transaction.commit();
+
+      await Transation.create({
+        amount: amountToSell,
+        date: new Date(),
+        status: "Complete",
+        tipoTransacao: "Sell",
+        moneyId: idCryptoSell,
+        paymentMoneyId: idCryptoReceive,
+        receiverId: idUser,
+        senderId: null,
+      });
+
       return res.status(201).json({
         message: "Sell transaction successful.",
         wallet: await Wallet.findByPk(wallet.id, {
@@ -326,6 +377,42 @@ const TransactionController = {
     const output = Number(conversionRate) * Number(balance);
 
     res.json({ "converted-value": output });
+  },
+  getAllTransactions: async (req, res) => {
+    try {
+      const transations = await Transation.findAll({
+        include: [
+          {
+            model: Money,
+            as: "money",
+            include: [
+              { model: Crypto, as: "Crypto" },
+              { model: RealMoney, as: "RealMoney" },
+            ],
+          },
+          {
+            model: Money,
+            as: "paymentMoney",
+            include: [
+              { model: Crypto, as: "Crypto" },
+              { model: RealMoney, as: "RealMoney" },
+            ],
+          },
+          {
+            model: User,
+            as: "sender",
+          },
+          {
+            model: User,
+            as: "receiverUser",
+          },
+        ],
+      });
+
+      res.json(transations);
+    } catch (error) {
+      res.status(500).json({ message: "Error on get history", err: error });
+    }
   },
 };
 

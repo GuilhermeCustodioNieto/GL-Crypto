@@ -40,6 +40,32 @@ const MoneyController = {
         .json({ message: "Error on fetching money item by ID", err: err });
     }
   },
+  getByAbbreviation: async (req, res) => {
+    const { abbreviation } = req.params;
+
+    try {
+      // Busca no modelo Money com as associações de RealMoney e Crypto
+      const money = await Money.findOne({
+        where: { abbreviation },
+        include: [
+          { model: RealMoney, required: false }, // Inclui RealMoney, se existir
+          { model: Crypto, required: false }, // Inclui Crypto, se existir
+        ],
+      });
+
+      // Retorna erro caso o Money não seja encontrado
+      if (!money) {
+        return res.status(404).json({
+          message: `Nenhum tipo de Money encontrado com a abreviação: ${abbreviation}`,
+        });
+      }
+
+      return res.status(200).json(money);
+    } catch (error) {
+      console.error("Erro ao buscar Money por abreviação:", error);
+      return res.status(500).json({ message: "Erro interno no servidor." });
+    }
+  },
 };
 
 export default MoneyController;

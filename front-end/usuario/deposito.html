@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposito</title>
+     <!-- Iconify Script -->
+     <script src="https://code.iconify.design/3/3.0.0/iconify.min.js"></script>
+     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+ 
+     <!-- CSS -->
+     <link rel="stylesheet" href="../css/reset.css">
+     <link rel="stylesheet" href="../css/index.css">
+     <link rel="stylesheet" href="../css/header.css">
+     <link rel="stylesheet" href="..//css/usuario.css">
+     <link rel="stylesheet" href="../css/cards/card-compra-venda.css">
+     <link rel="stylesheet" href="../css/deposito.css">
+     <!-- Font-->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+ 
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+</head>
+<body class="fundo centro">
+    
+    <header class="container-header">
+        <section class="section-header">
+            <a href="../index.html"><img src="../imgs/logo.gif" alt="logotipo" class="logotipo"></a>
+            <nav class="nav-bar">
+                <a href="../venda-compra/compras-cripto.html" class="links-header p">Compre Cripto</a>
+                <a href="../venda-compra/vendas-cripto.html" class="links-header p">Trade Cripto</a>
+                <a href="../index.html" class="links-header p">Sobre GL Cripto</a>
+            </nav>
+        </section>
+        <section class="section-header">
+            <a href="../usuario/deposito.html" class="box-link2"><span class="iconify" data-icon="tdesign:money" data-width="24" data-height="24"></span> DEPOSITAR</a>
+            <a href="./usuario.html" class="link-none"><span class="iconify icon-user" data-icon="mingcute:user-4-fill"></span></a>
+        </section>
+    </header>
+
+    <main class="coluna centro">
+        <section class="container-deposito">
+            <div class="titulo-bar">
+                <h2 class="titulo">Depósito</h2> 
+            </div>
+
+            <div class="card-input">
+                <label class="label-input">Receber</label>
+                <div class="input-box">
+                    <input type="number" id="valorPagar" name="valorPagar" placeholder="00,00" class="input-text">
+                    <div class="linha">
+                        <img src="../imgs/coin-stack.png" alt="COIN" class="icon-coin">
+                        <select class="select-cedula" name="moeda-pagar" id="moeda-pagar">
+                            <option class="opcao-select" value="BRL" >BRL</option>
+                            <option class="opcao-select" value="USD">USD</option>
+                            <option class="opcao-select" value="EUR">EUR</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="sub-titulo-forma">Formas de Pagamento</h2>
+            <div class="seletor-pagamento">
+                <div class="card-formas">
+                    <input type="checkbox" class="seletor">
+                    <img src="../imgs/logos/cartao.png" alt="cartão" class="icone-pagamento">
+                    <p class="text-forma">Cartão</p>
+                </div>
+
+                <div class="card-formas">
+                    <input type="checkbox" class="seletor">
+                    <img src="../imgs/logos/pix.png" alt="cartão" class="icone-pagamento">
+                    <p class="text-forma">Pix</p>
+                </div>
+
+                <div class="card-formas">
+                    <input type="checkbox" class="seletor">
+                    <img src="../imgs/logos/boleto.png" alt="cartão" class="icone-pagamento">
+                    <p class="text-forma">Boleto</p>
+                </div>
+            </div>
+
+            <button class="btn-pagamento">Pagamento</button>
+        </section>
+    </main>
+
+</body>
+</html>

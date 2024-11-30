@@ -32,6 +32,10 @@ Money.init(
         isIn: [["Crypto", "RealMoney"]],
       },
     },
+    quantity: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+    },
     cryptoId: {
       type: DataTypes.INTEGER,
       references: {

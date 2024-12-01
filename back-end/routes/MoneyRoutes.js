@@ -177,6 +177,11 @@ MoneyRoutes.get("/realMoney", RealMoneyController.getAllRealMoney);
  */
 MoneyRoutes.get("/realMoney/:id", RealMoneyController.getById);
 
+MoneyRoutes.get(
+  "/realMoney/abbreviation/:abbreviation",
+  RealMoneyController.getByAbbreviation
+);
+
 /**
  * @swagger
  * /money/realMoney:

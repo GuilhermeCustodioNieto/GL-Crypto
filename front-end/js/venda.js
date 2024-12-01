@@ -30,8 +30,8 @@ async function alterarValorCompra(idCryptoInput, idCryptoOutput, balance) {
     const response = await axios.post(
       "http://localhost:3000/transation/convert",
       {
-        idCryptoInput: idCryptoInput,
-        idCryptoOutput: idCryptoOutput,
+        idMoneyInput: idCryptoInput,
+        idMoneyOutput: idCryptoOutput,
         balance: balance,
       }
     );
@@ -57,14 +57,14 @@ document
       document.querySelector(".moedas2").value
     );
 
-    const balance = document.querySelector(".pagar  -input").value;
+    const balance = document.querySelector(".pagar-input").value;
     alterarValorCompra(idCryptoInput, idCryptoOutput, balance);
   });
 
 async function buscarCryptoId(abbreviation) {
   try {
     const response = await axios.get(
-      `http://localhost:3000/money/cryptos/abbreviation/${abbreviation}`
+      `http://localhost:3000/money/abbreviation/${abbreviation}`
     );
     return response.data.id;
   } catch (error) {
@@ -86,23 +86,16 @@ function fazerTransacao() {
     });
 
     try {
-      // Buscando os IDs de forma assíncrona
-
-      console.log(dataRequest["pagar"]);
-
       const idCryptoReceive = await buscarCryptoId(
         dataRequest["idCryptoReceive"]
       );
       const idCryptoSell = await buscarCryptoId(dataRequest["idCryptoSell"]);
 
       // Adicionando os IDs ao dataRequest
-      dataRequest["idCryptoReceive"] = idCryptoReceive;
-      dataRequest["idCryptoSell"] = idCryptoSell;
+      dataRequest["idMoneyReceive"] = idCryptoReceive;
+      dataRequest["idMoneySell"] = idCryptoSell;
 
       dataRequest["idUser"] = userId;
-
-      console.log("Data Request:", dataRequest);
-      console.log(token);
 
       // Enviando os dados
       await axios.post(

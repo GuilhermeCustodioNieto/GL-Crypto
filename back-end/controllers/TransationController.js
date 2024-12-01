@@ -215,7 +215,7 @@ const TransactionController = {
         transaction,
       });
 
-      const moneyReceive = await Crypto.findByPk(idMoneyReceive, {
+      const moneyReceive = await Money.findByPk(idMoneyReceive, {
         transaction,
       });
 
@@ -225,6 +225,8 @@ const TransactionController = {
           .status(404)
           .json({ message: "Crypto or associated Money not found." });
       }
+
+      console.log(moneyReceive);
 
       const sellAbbreviation = moneySell.abbreviation;
       const receiveAbbreviation = moneyReceive.abbreviation;
@@ -281,13 +283,15 @@ const TransactionController = {
           }
         );
       } else {
+        console.log(moneyReceive);
+
         await CryptoWallet.create(
           {
             walletId: wallet.id,
-            moneyTypeId: idCryptoReceive,
+            moneyTypeId: idMoneyReceive,
             balance: Number(totalReceived),
             lastPurchase: new Date(),
-            totalInDollar: cryptoReceive.valueInDollar * Number(totalReceived),
+            totalInDollar: moneyReceive.valueInDollar * Number(totalReceived),
           },
           { transaction }
         );
@@ -322,9 +326,7 @@ const TransactionController = {
       });
     }
   },
-  deposit: async (req, res) => {
-    const { balance, idUser, typePaymet } = req.body;
-  },
+
   convertBetweenCurrencies: async (req, res) => {
     const { idMoneyInput, idMoneyOutput, balance } = req.body;
 
@@ -391,6 +393,7 @@ const TransactionController = {
     const transaction = await sequelize.transaction();
     try {
       const { balance, RealMoneyId, idUser } = req.body;
+      console.log(req.body);
 
       // Verifica se os parâmetros necessários foram fornecidos
       if (!balance || !RealMoneyId || !idUser) {

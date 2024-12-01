@@ -114,15 +114,3 @@
     gap: 10px;
     margin: 0px 0px 25px 0px;
 }
-
-.icon-user{
-    color: #474D57;
-    height: 45px;
-    width: 45px;
-    margin: 0px 15px;
-    transition: .5s;
-}
-
-.icon-user:hover{
-    color: #f0b90f;
-}

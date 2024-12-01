@@ -32,8 +32,8 @@ Money.init(
         isIn: [["Crypto", "RealMoney"]],
       },
     },
-    quantity: {
-      type: DataTypes.BIGINT,
+    valueInDollar: {
+      type: DataTypes.DOUBLE,
       allowNull: false,
     },
     cryptoId: {

@@ -79,7 +79,9 @@ const CryptoController = {
         name,
         imgUrl,
         abbreviation,
+
         type: "Crypto",
+        valueInDollar,
         cryptoId: newCrypto.id,
       });
 

@@ -30,14 +30,18 @@ function mudarInfos(money) {
     valor = money.valueInDollar;
   }
 
-  let template = `
-    <div class="linha-logo">
-              <div class="logo-box">
-                <img
+  /*
+  <img
                   src="${money.imgUrl}"
                   alt="logo"
                   class="coin-logo"
                 />
+                 */
+
+  let template = `
+    <div class="linha-logo">
+              <div class="logo-box">
+                
                 <h2 class="coin-sigla">${money.abbreviation}</h2>
                 <p class="coin-nome">${money.name}</p>
               </div>

@@ -119,15 +119,19 @@ function formatarDados() {
 
       console.log(valor);
 
-      // Adiciona a linha na tabela
-      tabelaCriptos.innerHTML += `
-        <div class="linha-logo">
-          <div class="logo-box">
-            <img
+      /*
+      <img
               src="../imgs/logos/bitcoin.png"
               alt="logo"
               class="coin-logo"
             />
+      */
+
+      // Adiciona a linha na tabela
+      tabelaCriptos.innerHTML += `
+        <div class="linha-logo">
+          <div class="logo-box">
+            
             <h2 class="coin-sigla">${value.moneyType.abbreviation}</h2>
             <p class="coin-nome">${value.moneyType.name}</p>
           </div>

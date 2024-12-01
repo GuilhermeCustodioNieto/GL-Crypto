@@ -20,20 +20,21 @@ function mudarInfos(money) {
     return `<h3 class="${bonusValor}${valorization.toFixed(2)}%</h3>`;
   }
 
-  const imgUrl = money["imgUrl"];
+  const imgUrl = money.imgUrl;
 
   let valor = "";
   if (money.type == "Crypto") {
-    valor = money.Crypto.valueInDollar;
+    valor = money.valueInDollar;
+    console.log(money);
   } else if (money.type == "RealMoney") {
-    valor = money.quantity;
+    valor = money.valueInDollar;
   }
 
   let template = `
     <div class="linha-logo">
               <div class="logo-box">
                 <img
-                  src="${imgUrl}"
+                  src="${money.imgUrl}"
                   alt="logo"
                   class="coin-logo"
                 />

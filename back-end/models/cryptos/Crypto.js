@@ -15,10 +15,6 @@ Crypto.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    valueInDollar: {
-      type: DataTypes.DOUBLE,
-      allowNull: false,
-    },
   },
   {
     sequelize,

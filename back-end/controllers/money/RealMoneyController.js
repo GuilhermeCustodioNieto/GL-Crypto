@@ -33,10 +33,41 @@ const RealMoneyController = {
       });
     }
   },
+  getByAbbreviation: async (req, res) => {
+    try {
+      const realMoney = await RealMoney.findOne({
+        include: {
+          model: Money, // Inclui o modelo relacionado
+          where: {
+            abbreviation: req.params.abbreviation, // Filtra pelo campo abbreviation
+          },
+        },
+      });
+
+      if (realMoney) {
+        res.json(realMoney);
+      } else {
+        res.status(404).json({ message: "RealMoney not found" });
+      }
+    } catch (err) {
+      res.status(500).json({
+        message: "Error on get a crypto by abbreviation",
+        err: err.message,
+      });
+    }
+  },
 
   createNewRealMoney: async (req, res) => {
     try {
-      const { name, country, abbreviation, value, symbol, imgUrl } = req.body;
+      const {
+        name,
+        country,
+        abbreviation,
+        value,
+        symbol,
+        imgUrl,
+        valueInDollar,
+      } = req.body;
 
       const newRealMoney = await RealMoney.create({
         country,
@@ -49,6 +80,7 @@ const RealMoneyController = {
         imgUrl,
         abbreviation,
         type: "RealMoney",
+        valueInDollar,
         realMoneyId: newRealMoney.id,
       });
 

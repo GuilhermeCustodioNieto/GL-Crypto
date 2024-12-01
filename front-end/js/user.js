@@ -71,12 +71,20 @@ function formatarDados() {
 
     async function alterarValorCompra(idCryptoInput, idCryptoOutput, balance) {
       try {
+        console.log({
+          idMoneyInput: idCryptoInput,
+          idMoneyOutput: idCryptoOutput,
+          balance: balance,
+          idUser: userId,
+        });
+
         const response = await axios.post(
           "http://localhost:3000/transation/convert",
           {
             idMoneyInput: idCryptoInput,
             idMoneyOutput: idCryptoOutput,
             balance: balance,
+            idUser: userId,
           }
         );
         return response.data["converted-value"];
@@ -95,7 +103,7 @@ function formatarDados() {
       let valor = "";
 
       if (value.moneyType.type === "Crypto") {
-        valor = value.moneyType.Crypto.valueInDollar; // Valor já disponível
+        valor = value.totalInDollar; // Valor já disponível
       } else if (value.moneyType.type === "RealMoney") {
         try {
           const idCryptoInput = await buscarCryptoId(

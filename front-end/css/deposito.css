@@ -1,0 +1,76 @@
+.container-deposito{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 3px solid #474D57;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.sub-titulo-forma{
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 30px;
+    color: #eee;
+    padding: 15px;
+}
+
+.seletor-pagamento{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.card-formas{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.icone-pagamento{
+    height: 50px;
+    width: 50px;
+    transition: .5s;
+}
+
+.text-forma{
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 20px;
+    color: #eee;
+    font-weight: 500;
+}
+
+.seletor{
+    height: 15px;
+    width: 15px;
+}
+.btn-pagamento{
+    width: 450px;
+    height: 115px;
+    background: none;
+    border: 3px #F0B90B solid;
+    border-radius: 5px;
+    color: #F0B90B;
+    font-size: 36px;
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin: 50px 0px 20px 0px;
+    transition: .5s;
+}
+
+.btn-pagamento:hover{
+    background-color: #F0B90B;
+    color: #181A20;
+    font-weight: 600;
+    box-shadow: 0px 0px 15px #F0B90B;
+}

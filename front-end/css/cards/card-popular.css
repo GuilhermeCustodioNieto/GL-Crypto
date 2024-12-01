@@ -20,7 +20,7 @@
     flex-direction: column;
     padding: 10px;
     width: 720px;
-    height: 500px;
+    min-height: 500px;
 }
 
 .tabela-titulo{

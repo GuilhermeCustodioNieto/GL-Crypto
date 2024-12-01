@@ -87,3 +87,15 @@
 ::selection{
     background-color: #333;
 }
+
+.icon-user{
+    color: #474D57;
+    height: 45px;
+    width: 45px;
+    margin: 0px 15px;
+    transition: .5s;
+}
+
+.icon-user:hover{
+    color: #f0b90f;
+}

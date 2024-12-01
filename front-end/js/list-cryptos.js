@@ -60,8 +60,8 @@ function mudarInfos(money) {
 async function main() {
   const list = await getList();
 
-  if (list.length <= 5) {
-    for (let i = 0; i <= list.length - 1; i++) {
+  if (list.length > 5) {
+    for (let i = 0; i <= 5 - 1; i++) {
       mudarInfos(list[i]);
     }
   } else {

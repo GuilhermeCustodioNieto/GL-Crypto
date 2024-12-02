@@ -25,8 +25,9 @@ async function buscarCryptoId(abbreviation) {
     const response = await axios.get(
       `http://localhost:3000/money/realMoney/abbreviation/${abbreviation}`
     );
+    console.log(response.data.Money.id);
 
-    return response.data.id;
+    return response.data.Money.id;
   } catch (error) {
     console.error(`Erro ao buscar o ID para ${abbreviation}:`, error);
     throw error;
@@ -45,6 +46,8 @@ form.addEventListener("submit", async (event) => {
   });
 
   try {
+    console.log(dataRequest["realMoney"]);
+
     const RealMoneyId = await buscarCryptoId(dataRequest["realMoney"]);
 
     // Adicionando os IDs ao dataRequest

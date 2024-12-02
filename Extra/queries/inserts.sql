@@ -1,8 +1,5 @@
 USE db_crypto;
 
-/*Inserts para as criptos*/
-USE db_crypto;
-
 /* Inserts para os autores */
 INSERT INTO cryptos(author, createdAt, updatedAt) 
 VALUES 
@@ -53,7 +50,42 @@ VALUES
 ('Compound', 'https://images.vexels.com/content/152579/preview/orange-circle-question-mark-icon-960a07.png', 'COMP', 'Crypto', 45, 5, null, NOW(), NOW());
 
 /*Inserts para as realMoneys*/
-INSERT INTO real_moneys(country, symbol,  createdAt, updatedAt) VALUES ('United States Of America', '$', NOW(), NOW());
+USE db_crypto;
 
-INSERT INTO money(name, imgUrl, abbreviation, type, valueInDollar, cryptoId, realMoneyId, createdAt, updatedAt) VALUES
-	('Bitcoin', 'https://images.vexels.com/content/152579/preview/orange-circle-question-mark-icon-960a07.png','BTC', 'Crypto', 50000, null, 1, NOW(), NOW());
+/* Inserts para as realMoneys */
+INSERT INTO real_moneys(country, symbol, createdAt, updatedAt) 
+VALUES 
+('United States Of America', '$', NOW(), NOW()),
+('European Union', '€', NOW(), NOW()),
+('United Kingdom', '£', NOW(), NOW()),
+('Japan', '¥', NOW(), NOW()),
+('India', '₹', NOW(), NOW()),
+('Brazil', 'R$', NOW(), NOW()),
+('Canada', 'C$', NOW(), NOW()),
+('Australia', 'A$', NOW(), NOW()),
+('China', '¥', NOW(), NOW()),
+('South Korea', '₩', NOW(), NOW());
+
+/* Inserts para o money */
+INSERT INTO money(name, imgUrl, abbreviation, type, valueInDollar, cryptoId, realMoneyId, createdAt, updatedAt) 
+VALUES 
+('US Dollar', 'https://images.vexels.com/content/152579/preview/orange-circle-question-mark-icon-960a07.png', 'USD', 'Real', 1, null, 1, NOW(), NOW()),
+('Euro', 'https://images.vexels.com/content/152579/preview/orange-circle-question-mark-icon-960a07.png', 'EUR', 'Real', 1.1, null, 2, NOW(), NOW()),
+('British Pound', 'https://images.vexels.com/content/152579/preview/orange-circle-question-mark-icon-960a07.png', 'GBP', 'Real', 1.25, null, 3, NOW(), NOW()),
+('Japanese Yen', 'https://images.vexels.com/content/152579/preview/orange-circle-question-mark-icon-960a07.png', 'JPY', 'Real', 0.0075, null, 4, NOW(), NOW()),
+('Indian Rupee', 'https://images.vexels.com/content/152579/preview/orange-circle-question-mark-icon-960a07.png', 'INR', 'Real', 0.012, null, 5, NOW(), NOW()),
+('Brazilian Real', 'https://images.vexels.com/content/152579/preview/orange-circle-question-mark-icon-960a07.png', 'BRL', 'Real', 0.2, null, 6, NOW(), NOW()),
+('Canadian Dollar', 'https://images.vexels.com/content/152579/preview/orange-circle-question-mark-icon-960a07.png', 'CAD', 'Real', 0.75, null, 7, NOW(), NOW()),
+('Australian Dollar', 'https://images.vexels.com/content/152579/preview/orange-circle-question-mark-icon-960a07.png', 'AUD', 'Real', 0.65, null, 8, NOW(), NOW()),
+('Chinese Yuan', 'https://images.vexels.com/content/152579/preview/orange-circle-question-mark-icon-960a07.png', 'CNY', 'Real', 0.14, null, 9, NOW(), NOW()),
+('South Korean Won', 'https://images.vexels.com/content/152579/preview/orange-circle-question-mark-icon-960a07.png', 'KRW', 'Real', 0.00075, null, 10, NOW(), NOW()),
+('Mexican Peso', 'https://images.vexels.com/content/152579/preview/orange-circle-question-mark-icon-960a07.png', 'MXN', 'Real', 0.05, null, 1, NOW(), NOW()),
+('Swiss Franc', 'https://images.vexels.com/content/152579/preview/orange-circle-question-mark-icon-960a07.png', 'CHF', 'Real', 1.1, null, 2, NOW(), NOW()),
+('Russian Ruble', 'https://images.vexels.com/content/152579/preview/orange-circle-question-mark-icon-960a07.png', 'RUB', 'Real', 0.015, null, 3, NOW(), NOW()),
+('Hong Kong Dollar', 'https://images.vexels.com/content/152579/preview/orange-circle-question-mark-icon-960a07.png', 'HKD', 'Real', 0.13, null, 4, NOW(), NOW()),
+('Turkish Lira', 'https://images.vexels.com/content/152579/preview/orange-circle-question-mark-icon-960a07.png', 'TRY', 'Real', 0.035, null, 5, NOW(), NOW()),
+('South African Rand', 'https://images.vexels.com/content/152579/preview/orange-circle-question-mark-icon-960a07.png', 'ZAR', 'Real', 0.052, null, 6, NOW(), NOW()),
+('Saudi Riyal', 'https://images.vexels.com/content/152579/preview/orange-circle-question-mark-icon-960a07.png', 'SAR', 'Real', 0.27, null, 7, NOW(), NOW()),
+('Singapore Dollar', 'https://images.vexels.com/content/152579/preview/orange-circle-question-mark-icon-960a07.png', 'SGD', 'Real', 0.74, null, 8, NOW(), NOW()),
+('Swedish Krona', 'https://images.vexels.com/content/152579/preview/orange-circle-question-mark-icon-960a07.png', 'SEK', 'Real', 0.095, null, 9, NOW(), NOW()),
+('Norwegian Krone', 'https://images.vexels.com/content/152579/preview/orange-circle-question-mark-icon-960a07.png', 'NOK', 'Real', 0.1, null, 10, NOW(), NOW());

@@ -417,12 +417,10 @@ const TransactionController = {
       });
 
       // 2. Buscar o tipo de Money (RealMoney)
-      const realMoney = await RealMoney.findByPk(RealMoneyId, {
-        include: { model: Money },
+      const realMoney = await Money.findByPk(RealMoneyId, {
+        include: { model: RealMoney },
         transaction,
       });
-
-      console.log(realMoney);
 
       if (!realMoney) {
         await transaction.rollback();
@@ -431,17 +429,18 @@ const TransactionController = {
 
       // 3. Buscar a carteira de RealMoney na CryptoWallet
       let realMoneyWallet = wallet.cryptoWallets.find(
-        (cw) => cw.moneyTypeId === realMoney.Money.id
+        (cw) => cw.moneyTypeId === realMoney.id
       );
 
       if (!realMoneyWallet) {
         // 4. Caso não exista, criar a carteira de RealMoney dentro da CryptoWallet
         realMoneyWallet = await CryptoWallet.create(
           {
+            lastPurchase: new Date(),
             walletId: wallet.id,
             moneyTypeId: RealMoneyId,
             balance: Number(balance),
-            totalInDollar: realMoney.valueInDollar * Number(balance),
+            totalInDollar: Number(realMoney.valueInDollar) * Number(balance),
           },
           { transaction }
         );

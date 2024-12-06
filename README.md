@@ -4,16 +4,15 @@ Coisas que dá pra fazer no site de PW:
 
 Ajustes:
 
-- fazer alert mais bonito 
-- fazer verificação se as requisições estão corretas e mostrar para o usuário oq deu errado 
-- fazer troca de header para quando o usuário estiver logado
-- arrumar sistema de depósito 
-- arrumar histórico de transação para ter um footer
-- Fazer um JS para quando o usuário clicar em airdrop aparecer uma msg de que ele não está disponível 
-- fazer logo para o site
-- fazer mensagens "rápidas" para quando os dados não estiverem devidamente preenchidos nos inputs
-- Arrumar o token para que o usuário possa continuar logado mesmo abrindo uma nova aba do Chrome 
-- arrumar a password para que o Chrome salve ela
+- fazer alert mais bonito *
+- fazer verificação se as requisições estão corretas e mostrar para o usuário oq deu errado *
+- fazer troca de header para quando o usuário estiver logado *
+- arrumar sistema de depósito *
+- arrumar histórico de transação para ter um footer *
+- Fazer um JS para quando o usuário clicar em airdrop aparecer uma msg de que ele não está disponível *
+- fazer logo para o site *
+- fazer mensagens "rápidas" para quando os dados não estiverem devidamente preenchidos nos inputs *
+- Arrumar o token para que o usuário possa continuar logado mesmo abrindo uma nova aba do Chrome  *
 - arrumar o email para que ele seja enviado quando o usuário for criado
 
 Novas funcionalidades:

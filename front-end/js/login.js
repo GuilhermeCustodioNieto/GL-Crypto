@@ -13,14 +13,22 @@ form.addEventListener("submit", (event) => {
     .post("http://localhost:3000/auth/user/login", dataRequest)
     .then((response) => {
       console.log("Resposta da API:", response.data.returnData);
-      sessionStorage.setItem("jwtToken", response.data.returnData.token);
-      sessionStorage.setItem("userId", response.data.returnData.idUser);
+      localStorage.setItem("jwtToken", response.data.returnData.token);
+      localStorage.setItem("userId", response.data.returnData.idUser);
 
-      alert("Login concluído com sucesso!");
       window.location.href = "../usuario/usuario.html";
     })
     .catch((error) => {
-      console.error("Erro ao enviar dados:", error);
-      alert("Ocorreu um erro. Por favor, tente novamente.");
+      if (error.response.data.message == "Invalid email or password") {
+        Swal.fire({
+          icon: "error",
+          title: "Email ou senha incorretos",
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Ocorreu um erro ao realizar a transação",
+        });
+      }
     });
 });

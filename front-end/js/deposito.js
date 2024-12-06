@@ -1,5 +1,15 @@
-const token = sessionStorage.getItem("jwtToken");
-const userId = sessionStorage.getItem("userId");
+const token = localStorage.getItem("jwtToken");
+const userId = localStorage.getItem("userId");
+
+if (!token || token == "") {
+  Swal.fire({
+    icon: "error",
+    title: "Usuario não logado",
+    text: "Faça login para prosseguir",
+  }).then(() => {
+    window.location.href = "../login/login.html";
+  });
+}
 
 function adicionarCriptos() {
   let moedas = document.querySelector("#moeda-pagar");
@@ -45,6 +55,14 @@ form.addEventListener("submit", async (event) => {
     dataRequest[key] = value;
   });
 
+  if (!dataRequest["balance"]) {
+    Swal.fire({
+      icon: "error",
+      title: "Digite um valor para prosseguir",
+    });
+    return;
+  }
+
   try {
     const RealMoneyId = await buscarCryptoId(dataRequest["realMoney"]);
 
@@ -69,17 +87,16 @@ form.addEventListener("submit", async (event) => {
     );
 
     Swal.fire({
-      title: "Finalizado!",
-      text: "Transação realizada com sucesso!",
+      title: "Transação realizada com sucesso!",
       icon: "success",
-      customClass: {
-        container: "swal2-theme-dark", // Classe específica para o tema escuro
-      },
     }).then(() => {
       window.location.href = "../usuario/usuario.html";
     });
   } catch (error) {
     console.error("Erro ao realizar a transação:", error);
-    alert("Erro ao realizar a transação.");
+    Swal.fire({
+      icon: "error",
+      title: "Ocorreu um erro ao realizar a transação",
+    });
   }
 });

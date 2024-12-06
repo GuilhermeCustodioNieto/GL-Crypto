@@ -1,9 +1,14 @@
-const token = sessionStorage.getItem("jwtToken");
-const userId = sessionStorage.getItem("userId");
+const token = localStorage.getItem("jwtToken");
+const userId = localStorage.getItem("userId");
 
-if (!token) {
-  alert("O usuário não está logado.");
-  window.location.href = "../login/login.html";
+if (!token || token == "") {
+  Swal.fire({
+    icon: "error",
+    title: "Usuario não logado",
+    text: "Faça login para prosseguir",
+  }).then(() => {
+    window.location.href = "../login/login.html";
+  });
 }
 
 function adicionarCriptos() {
@@ -85,6 +90,14 @@ function fazerTransacao() {
       dataRequest[key] = value;
     });
 
+    if (!dataRequest["amountToSell"]) {
+      Swal.fire({
+        icon: "error",
+        title: "Digite um valor para prosseguir",
+      });
+      return;
+    }
+
     try {
       const idCryptoReceive = await buscarCryptoId(
         dataRequest["idCryptoReceive"]
@@ -112,12 +125,29 @@ function fazerTransacao() {
         }
       );
 
-      alert("Transação realizada com sucesso!");
+      Swal.fire({
+        title: "Transação realizada com sucesso!",
+        icon: "success",
+      }).then(() => {
+        window.location.href = "../usuario/usuario.html";
+      });
 
       window.location.href = "../usuario/usuario.html";
     } catch (error) {
-      console.error("Erro ao realizar a transação:", error);
-      alert("Erro ao realizar a transação.");
+      if (
+        error.response.data.message == "Insufficient balance in sell wallet."
+      ) {
+        Swal.fire({
+          icon: "error",
+          title: "Valor insuficiente ou indexistente na carteira",
+          text: "A criptomoeda que você está tentando vender é inexistente ou insuficiente na sua carteira.",
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Ocorreu um erro ao realizar a transação",
+        });
+      }
     }
   });
 }

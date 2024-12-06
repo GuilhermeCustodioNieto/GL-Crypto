@@ -46,16 +46,12 @@ form.addEventListener("submit", async (event) => {
   });
 
   try {
-    console.log(dataRequest["realMoney"]);
-
     const RealMoneyId = await buscarCryptoId(dataRequest["realMoney"]);
 
     // Adicionando os IDs ao dataRequest
     dataRequest["RealMoneyId"] = RealMoneyId;
 
     dataRequest["idUser"] = userId;
-
-    console.log(dataRequest);
 
     // Enviando os dados
     await axios.post(
@@ -72,9 +68,16 @@ form.addEventListener("submit", async (event) => {
       }
     );
 
-    alert("Transação realizada com sucesso!");
-
-    window.location.href = "../usuario/usuario.html";
+    Swal.fire({
+      title: "Finalizado!",
+      text: "Transação realizada com sucesso!",
+      icon: "success",
+      customClass: {
+        container: "swal2-theme-dark", // Classe específica para o tema escuro
+      },
+    }).then(() => {
+      window.location.href = "../usuario/usuario.html";
+    });
   } catch (error) {
     console.error("Erro ao realizar a transação:", error);
     alert("Erro ao realizar a transação.");

@@ -1,5 +1,15 @@
-const token = sessionStorage.getItem("jwtToken");
-const userId = sessionStorage.getItem("userId");
+const token = localStorage.getItem("jwtToken");
+const userId = localStorage.getItem("userId");
+
+if (!token || token == "") {
+  Swal.fire({
+    icon: "error",
+    title: "Usuario não logado",
+    text: "Faça login para prosseguir",
+  }).then(() => {
+    window.location.href = "../login/login.html";
+  });
+}
 
 async function getHistory() {
   const response = await axios.get(

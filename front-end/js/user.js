@@ -1,9 +1,14 @@
-const token = sessionStorage.getItem("jwtToken");
-const userId = sessionStorage.getItem("userId");
+const token = localStorage.getItem("jwtToken");
+const userId = localStorage.getItem("userId");
 
-if (!token) {
-  alert("O usuário não está logado.");
-  window.location.href = "../login/login.html";
+if (!token || token == "") {
+  Swal.fire({
+    icon: "error",
+    title: "Usuario não logado",
+    text: "Faça login para prosseguir",
+  }).then(() => {
+    window.location.href = "../login/login.html";
+  });
 }
 
 let dataUser = null;
@@ -54,7 +59,6 @@ function formatarDados() {
   document.getElementById("phone").innerHTML = dataUser.phone;
   document.getElementById("cpf").innerHTML = dataUser.cpf;
   document.getElementById("rg").innerHTML = dataUser.rg;
-  document.getElementById("id").innerHTML = dataUser.id;
 
   async function processarCriptos(dataUser) {
     async function buscarCryptoId(abbreviation) {
@@ -149,3 +153,27 @@ function formatarDados() {
   }
   processarCriptos(dataUser);
 }
+
+document.getElementById("verificar").addEventListener("click", (event) => {
+  event.preventDefault();
+
+  Swal.fire({
+    icon: "error",
+    title: "Funcionaliade em manutenção",
+    text: "Desculpe, mas estamos trabalhando nessa funcionalidade no momento",
+  });
+});
+
+document.getElementById("sair").addEventListener("click", (event) => {
+  event.preventDefault();
+
+  localStorage.setItem("jwtToken", "");
+  localStorage.setItem("userId", "");
+
+  Swal.fire({
+    icon: "sucess",
+    title: "Conta deslogada com sucesso",
+  }).then(() => {
+    window.location.href = "../login/login.html";
+  });
+});

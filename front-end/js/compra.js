@@ -1,9 +1,14 @@
-const token = sessionStorage.getItem("jwtToken");
-const userId = sessionStorage.getItem("userId");
+const token = localStorage.getItem("jwtToken");
+const userId = localStorage.getItem("userId");
 
-if (!token) {
-  alert("O usuário não está logado.");
-  window.location.href = "../login/login.html";
+if (!token || token == "") {
+  Swal.fire({
+    icon: "error",
+    title: "Usuario não logado",
+    text: "Faça login para prosseguir",
+  }).then(() => {
+    window.location.href = "../login/login.html";
+  });
 }
 
 function adicionarCriptos() {
@@ -86,6 +91,14 @@ function fazerTransacao() {
       dataRequest[key] = value;
     });
 
+    if (!dataRequest["balance"]) {
+      Swal.fire({
+        icon: "error",
+        title: "Digite um valor para prosseguir",
+      });
+      return;
+    }
+
     try {
       // Buscando os IDs de forma assíncrona
 
@@ -118,12 +131,27 @@ function fazerTransacao() {
         }
       );
 
-      alert("Transação realizada com sucesso!");
-
-      window.location.href = "../usuario/usuario.html";
+      Swal.fire({
+        title: "Transação realizada com sucesso!",
+        icon: "success",
+      }).then(() => {
+        window.location.href = "../usuario/usuario.html";
+      });
     } catch (error) {
-      console.error("Erro ao realizar a transação:", error);
-      alert("Erro ao realizar a transação.");
+      console.log(error);
+
+      if (error.response.data.message == "Output crypto wallet not found.") {
+        Swal.fire({
+          icon: "error",
+          title: "A criptomoeda que você está usando para pagar não existe",
+          text: "Use uma criptomoeda existente na sua carteira",
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Ocorreu um erro ao realizar a transação",
+        });
+      }
     }
   });
 }

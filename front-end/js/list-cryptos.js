@@ -25,7 +25,6 @@ function mudarInfos(money) {
   let valor = "";
   if (money.type == "Crypto") {
     valor = money.valueInDollar;
-    console.log(money);
   } else if (money.type == "RealMoney") {
     valor = money.valueInDollar;
   }

@@ -6,8 +6,10 @@ const pg2 = `
     <main>
     <section class="container-principal">
         <header class="header-login">
-        <img class="logotipo" src="../imgs/logo.gif" alt="logotipo" />
-        <a href="./registro1.html">
+        <a href="../index.html"
+            ><img src="../imgs/logo.png" alt="logotipo" class="logotipo"
+          /></a>
+        <a href="./registro.html">
             <span class="iconify seta" data-icon="majesticons:arrow-up-line" data-inline="false"></span>
         </a>
         </header>
@@ -43,8 +45,10 @@ const pg3 = `
     <main>
     <section class="container-principal">
         <header class="header-login">
-        <img class="logotipo" src="../imgs/logo.gif" alt="logotipo" />
-        <a href="./registro2.html">
+        <a href="../index.html"
+            ><img src="../imgs/logo.png" alt="logotipo" class="logotipo"
+          /></a>
+        <a href="./registro.html">
             <span class="iconify seta" data-icon="majesticons:arrow-up-line" data-inline="false"></span>
         </a>
         </header>
@@ -122,7 +126,12 @@ function initializePage3Events() {
     const secondPassword = formData.get("secondPassword");
 
     if (password !== secondPassword) {
-      alert("Senhas diferentes. Por favor, verifique.");
+      Swal.fire({
+        title: "Senhas diferentes!",
+        text: "As senhas devem ser iguais para você realizar seu cadastro",
+        icon: "error",
+        confirmButtonText: "Certo",
+      });
       return;
     }
 
@@ -136,14 +145,19 @@ function initializePage3Events() {
     axios
       .post("http://localhost:3000/auth/user/register", dataRequest)
       .then((response) => {
-        console.log("Resposta da API:", response.data);
-        alert("Registro concluído com sucesso!");
-        window.location.href = "../index.html"; // Redireciona para a página inicial
+        Swal.fire({
+          title: "Transação realizada com sucesso!",
+          icon: "success",
+        }).then(() => {
+          window.location.href = "../index.html";
+        });
       })
       .catch((error) => {
-        console.error("Erro ao enviar dados:", error);
-        alert("Ocorreu um erro. Por favor, tente novamente.");
-        console.log(dataRequest);
+        Swal.fire({
+          icon: "error",
+          title: "Funcionaliade em manutenção",
+          text: `Erro: ${error.response.data.message}`,
+        });
       });
   });
 }
@@ -162,7 +176,10 @@ document.querySelector("#pg1-submit").addEventListener("click", (event) => {
   const age = calculateAge(birthDate);
 
   if (age < 18) {
-    alert("Você precisa ter 18 anos ou mais para se registrar.");
+    Swal.fire({
+      icon: "error",
+      title: "Você precisa ter 18 anos ou mais para se registrar",
+    });
     return;
   }
 

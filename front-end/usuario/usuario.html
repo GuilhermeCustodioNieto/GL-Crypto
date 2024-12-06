@@ -6,6 +6,12 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Pagina de Usuario</title>
+
+      <link rel="stylesheet" href="@sweetalert2/theme-dark/dark.css" />
+      <link
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css"
+        rel="stylesheet"
+      />
       <!-- Iconify Script -->
       <script src="https://code.iconify.design/3/3.0.0/iconify.min.js"></script>
       <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
@@ -35,7 +41,7 @@
       <header class="container-header">
         <section class="section-header">
           <a href="../index.html"
-            ><img src="../imgs/logo.gif" alt="logotipo" class="logotipo"
+            ><img src="../imgs/logo.png" alt="logotipo" class="logotipo"
           /></a>
           <nav class="nav-bar">
             <a href="../venda-compra/compras-cripto.html" class="links-header p"
@@ -98,7 +104,7 @@
                 RG:<span class="dado-user" id="rg"> ***********</span>
               </h3>
               <h3 class="dados">
-                ID User:<span class="dado-user" id="id"> 000001</span>
+                <span class="dado-user" id="sair">Sair</span>
               </h3>
             </div>
           </div>
@@ -134,7 +140,7 @@
               Bônus de verificação nas 10 primeiras transações
             </p>
           </div>
-          <a href="#" class="btn-verificar"
+          <a href="#" class="btn-verificar" id="verificar"
             >Verificar<span
               class="iconify icon-style"
               data-icon="flowbite:user-add-solid"
@@ -147,6 +153,8 @@
       <footer class="container-footer">
         <h2 class="copy">Desenvolvido por Lucas e Guilherme&copy;</h2>
       </footer>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
       <script src="../js/user.js"></script>
     </body>

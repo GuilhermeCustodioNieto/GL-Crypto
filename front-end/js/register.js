@@ -146,7 +146,7 @@ function initializePage3Events() {
       .post("http://localhost:3000/auth/user/register", dataRequest)
       .then((response) => {
         Swal.fire({
-          title: "Transação realizada com sucesso!",
+          title: "Registro realizado com sucesso!",
           icon: "success",
         }).then(() => {
           window.location.href = "../index.html";

@@ -112,7 +112,6 @@ const TransactionController = {
       const totalOutputRequired = Number(balance) * conversionRate;
       const totalInputRequired = Number(balance) * conversionRateInput;
 
-      // 5. Validar saldo suficiente
       if (Number(cryptoWalletOutput.balance) < totalOutputRequired) {
         await transaction.rollback();
         return res
@@ -120,7 +119,6 @@ const TransactionController = {
           .json({ message: "Insufficient balance in output wallet." });
       }
 
-      // 6. Atualizar saldos
       await CryptoWallet.update(
         {
           balance:
@@ -194,7 +192,6 @@ const TransactionController = {
         return res.status(400).json({ message: "Missing required fields." });
       }
 
-      // 1. Buscar usuário com a carteira
       const user = await User.findByPk(idUser, {
         include: [{ model: Wallet, as: "wallet" }],
         transaction,
@@ -210,7 +207,6 @@ const TransactionController = {
         transaction,
       });
 
-      // 2. Buscar informações das criptos
       const moneySell = await Money.findByPk(idMoneySell, {
         transaction,
       });
@@ -231,7 +227,6 @@ const TransactionController = {
       const sellAbbreviation = moneySell.abbreviation;
       const receiveAbbreviation = moneyReceive.abbreviation;
 
-      // 3. Buscar carteiras de criptomoedas existentes
       const moneyWalletSell = wallet.cryptoWallets.find(
         (cw) => cw.moneyTypeId === idMoneySell
       );
@@ -246,7 +241,6 @@ const TransactionController = {
           .json({ message: "Insufficient balance in sell wallet." });
       }
 
-      // 4. Obter a taxa de conversão
       const conversionRate = await getConversion(
         sellAbbreviation,
         receiveAbbreviation
@@ -261,7 +255,6 @@ const TransactionController = {
 
       const totalReceived = Number(amountToSell) * conversionRate;
 
-      // 5. Atualizar saldos usando o método update
       await CryptoWallet.update(
         {
           balance: Number(moneyWalletSell.balance) - Number(amountToSell),
@@ -297,7 +290,6 @@ const TransactionController = {
         );
       }
 
-      // 6. Commit da transação
       await transaction.commit();
 
       await Transation.create({
@@ -334,7 +326,6 @@ const TransactionController = {
 
     const moneyOutput = await Money.findByPk(idMoneyOutput, {});
 
-    // Verifica se os objetos foram carregados corretamente
     if (!moneyInput || !moneyOutput) {
       return res
         .status(404)
@@ -395,12 +386,10 @@ const TransactionController = {
       const { balance, RealMoneyId, idUser } = req.body;
       console.log(req.body);
 
-      // Verifica se os parâmetros necessários foram fornecidos
       if (!balance || !RealMoneyId || !idUser) {
         return res.status(400).json({ message: "Missing required fields." });
       }
 
-      // 1. Buscar usuário e sua carteira
       const user = await User.findByPk(idUser, {
         include: [{ model: Wallet, as: "wallet" }],
         transaction,
@@ -416,7 +405,6 @@ const TransactionController = {
         transaction,
       });
 
-      // 2. Buscar o tipo de Money (RealMoney)
       const realMoney = await Money.findByPk(RealMoneyId, {
         include: { model: RealMoney },
         transaction,
@@ -427,13 +415,11 @@ const TransactionController = {
         return res.status(404).json({ message: "RealMoney type not found." });
       }
 
-      // 3. Buscar a carteira de RealMoney na CryptoWallet
       let realMoneyWallet = wallet.cryptoWallets.find(
         (cw) => cw.moneyTypeId === realMoney.id
       );
 
       if (!realMoneyWallet) {
-        // 4. Caso não exista, criar a carteira de RealMoney dentro da CryptoWallet
         realMoneyWallet = await CryptoWallet.create(
           {
             lastPurchase: new Date(),
@@ -445,7 +431,6 @@ const TransactionController = {
           { transaction }
         );
       } else {
-        // 5. Caso já exista, atualizar o saldo da carteira de RealMoney
         realMoneyWallet = await CryptoWallet.update(
           {
             balance: Number(realMoneyWallet.balance) + Number(balance),
@@ -466,10 +451,9 @@ const TransactionController = {
         tipoTransacao: "Deposit",
         moneyId: RealMoneyId,
         senderId: idUser,
-        receiverId: null, // Não há destinatário específico em depósitos
+        receiverId: null,
       });
 
-      // 7. Finaliza a transação
       await transaction.commit();
 
       return res.status(201).json({
@@ -479,7 +463,6 @@ const TransactionController = {
         }),
       });
     } catch (error) {
-      // Em caso de erro, realiza o rollback da transação
       await transaction.rollback();
       console.error("Error in depositRealMoney:", error);
       return res.status(500).json({

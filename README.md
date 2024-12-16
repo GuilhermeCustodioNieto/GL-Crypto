@@ -13,7 +13,6 @@ Ajustes:
 - fazer logo para o site *
 - fazer mensagens "rápidas" para quando os dados não estiverem devidamente preenchidos nos inputs *
 - Arrumar o token para que o usuário possa continuar logado mesmo abrindo uma nova aba do Chrome  *
-- arrumar o email para que ele seja enviado quando o usuário for criado
 
 Novas funcionalidades:
 - tela de todas as criptos

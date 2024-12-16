@@ -44,16 +44,14 @@ const MoneyController = {
     const { abbreviation } = req.params;
 
     try {
-      // Busca no modelo Money com as associações de RealMoney e Crypto
       const money = await Money.findOne({
         where: { abbreviation },
         include: [
-          { model: RealMoney, required: false }, // Inclui RealMoney, se existir
-          { model: Crypto, required: false }, // Inclui Crypto, se existir
+          { model: RealMoney, required: false },
+          { model: Crypto, required: false },
         ],
       });
 
-      // Retorna erro caso o Money não seja encontrado
       if (!money) {
         return res.status(404).json({
           message: `Nenhum tipo de Money encontrado com a abreviação: ${abbreviation}`,

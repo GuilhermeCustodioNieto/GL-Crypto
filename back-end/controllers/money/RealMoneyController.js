@@ -37,9 +37,9 @@ const RealMoneyController = {
     try {
       const realMoney = await RealMoney.findOne({
         include: {
-          model: Money, // Inclui o modelo relacionado
+          model: Money,
           where: {
-            abbreviation: req.params.abbreviation, // Filtra pelo campo abbreviation
+            abbreviation: req.params.abbreviation,
           },
         },
       });

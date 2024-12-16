@@ -1,9 +1,11 @@
 import axios from "axios";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export default async function getConversion(input, output) {
-  const url = "https://min-api.cryptocompare.com/data/price";
-  const apiKey =
-    "6add71f794b87620f023c98ba204248731dff87c11e7cfbe5dec490e4022ee8c";
+  const url = process.env.URL_CONVERSOR;
+  const apiKey = process.env.API_KEY_CONVERSOR;
 
   const params = {
     fsym: input,

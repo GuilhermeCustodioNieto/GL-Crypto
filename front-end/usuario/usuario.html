@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Pagina de Usuario</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../imgs/logo.ico" />
+
+      <link rel="stylesheet" href="@sweetalert2/theme-dark/dark.css" />
+      <link
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css"
+        rel="stylesheet"
+      />
+      <!-- Iconify Script -->
+      <script src="https://code.iconify.design/3/3.0.0/iconify.min.js"></script>
+      <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+
+      <!-- CSS -->
+      <link rel="stylesheet" href="../css/reset.css" />
+      <link rel="stylesheet" href="../css/index.css" />
+      <link rel="stylesheet" href="../css/header.css" />
+      <link rel="stylesheet" href="..//css/usuario.css" />
+      <link rel="stylesheet" href="../css/cards/card-popular.css" />
+      <!-- Font-->
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap"
+        rel="stylesheet"
+      />
+
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet"
+      />
+    </head>
+    <body class="fundo centro">
+      <header class="container-header">
+        <section class="section-header">
+          <a href="../index.html"
+            ><img src="../imgs/logo.png" alt="logotipo" class="logotipo"
+          /></a>
+          <nav class="nav-bar">
+            <a href="../venda-compra/compras-cripto.html" class="links-header p"
+              >Compre Cripto</a
+            >
+            <a href="../venda-compra/vendas-cripto.html" class="links-header p"
+              >Trade Cripto</a
+            >
+            <a href="../index.html" class="links-header p">Sobre GL Cripto</a>
+          </nav>
+        </section>
+        <section class="section-header">
+          <a href="../usuario/deposito.html" class="box-link2"
+            ><span
+              class="iconify"
+              data-icon="tdesign:money"
+              data-width="24"
+              data-height="24"
+            ></span>
+            DEPOSITAR</a
+          >
+
+          <a href="./usuario.html" class="link-none"
+            ><span
+              class="iconify icon-user"
+              data-icon="mingcute:user-4-fill"
+            ></span
+          ></a>
+        </section>
+      </header>
+
+      <main class="container-main">
+        <h2 class="titulo">
+          Olá <span class="detalhe" id="username-title">Username</span>
+        </h2>
+
+        <section class="cards-user">
+          <div class="user-dados">
+            <span
+              class="icon-user iconify"
+              data-icon="solar:user-id-bold"
+              data-inline="false"
+            ></span>
+            <h2 class="nome-user" id="username">Username</h2>
+            <div class="text-card">
+              <h3 class="dados">
+                Email:<span class="dado-user" id="email">
+                  *****@exemplo.com</span
+                >
+              </h3>
+              <h3 class="dados">
+                Telefone:<span class="dado-user" id="phone">
+                  ** ***** ****</span
+                >
+              </h3>
+              <h3 class="dados">
+                CPF:<span class="dado-user" id="cpf"> ***********</span>
+              </h3>
+              <h3 class="dados">
+                RG:<span class="dado-user" id="rg"> ***********</span>
+              </h3>
+              <h3 class="dados">
+                <span class="dado-user" id="sair">Sair</span>
+              </h3>
+            </div>
+          </div>
+
+          <div class="user-carteira">
+            <h2 class="text-fundos">Seus Fundos:</h2>
+            <div class="tabela-box" id="tabelaCriptos"></div>
+          </div>
+
+          <div class="user-dados">
+            <span
+              class="icon-user iconify sheet-icon"
+              data-icon="streamline:parachute-drop"
+              data-inline="false"
+            ></span>
+            <h2 class="nome-user">Histórico</h2>
+            <div class="dados-drop">
+              <div class="coin">
+                <h2 class="nome-coin">Veja o seu histórico</h2>
+                <p class="valor-coin">De transações</p>
+              </div>
+            </div>
+            <a href="./historico.html"><p class="btn-drop">Histórico</p></a>
+          </div>
+        </section>
+
+        <div class="verificar">
+          <div>
+            <h2 class="titulo-verificar">Verificar Conta</h2>
+            <p class="texto-verificar">
+              Verifique sua conta para liberar todas as funcionalidades do site
+              <br />
+              Bônus de verificação nas 10 primeiras transações
+            </p>
+          </div>
+          <a href="#" class="btn-verificar" id="verificar"
+            >Verificar<span
+              class="iconify icon-style"
+              data-icon="flowbite:user-add-solid"
+              data-inline="false"
+            ></span
+          ></a>
+        </div>
+      </main>
+
+      <footer class="container-footer">
+        <h2 class="copy">Desenvolvido por Lucas e Guilherme&copy;</h2>
+      </footer>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      <script src="../js/user.js"></script>
+    </body>
+  </html>
+</html>

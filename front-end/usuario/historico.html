@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Historico</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../imgs/logo.ico" />
+    <!-- Iconify Script -->
+    <script src="https://code.iconify.design/3/3.0.0/iconify.min.js"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="..//css/usuario.css" />
+    <link rel="stylesheet" href="../css/historico.css" />
+    <!-- Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="fundo centro">
+    <header class="container-header">
+      <section class="section-header">
+        <a href="../index.html"
+          ><img src="../imgs/logo.png" alt="logotipo" class="logotipo"
+        /></a>
+        <nav class="nav-bar">
+          <a href="../venda-compra/compras-cripto.html" class="links-header p"
+            >Compre Cripto</a
+          >
+          <a href="../venda-compra/vendas-cripto.html" class="links-header p"
+            >Trade Cripto</a
+          >
+          <a href="../index.html" class="links-header p">Sobre GL Cripto</a>
+        </nav>
+      </section>
+      <section class="section-header">
+        <a href="../usuario/deposito.html" class="box-link2"
+          ><span
+            class="iconify"
+            data-icon="tdesign:money"
+            data-width="24"
+            data-height="24"
+          ></span>
+          DEPOSITAR</a
+        >
+
+        <a href="./usuario.html" class="link-none"
+          ><span
+            class="iconify icon-user"
+            data-icon="mingcute:user-4-fill"
+          ></span
+        ></a>
+      </section>
+    </header>
+
+    <main class="container-main">
+      <h2 class="titulo">Histórico de Transações</h2>
+
+      <table>
+        <thead>
+          <tr class="tb-linha-titulo">
+            <th class="tb-titulo">Status</th>
+            <th class="tb-titulo">Data</th>
+            <th class="tb-titulo">Tipo Transação</th>
+            <th class="tb-titulo">Transmissor</th>
+            <th class="tb-titulo">Receptor</th>
+            <th class="tb-titulo">Moeda Enviada</th>
+            <th class="tb-titulo">Moeda Recebida</th>
+          </tr>
+        </thead>
+        <tbody id="body-tabela"></tbody>
+      </table>
+    </main>
+
+    <footer class="container-footer">
+      <h2 class="copy">Desenvolvido por Lucas e Guilherme&copy;</h2>
+    </footer>
+  </body>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="../js/historico.js"></script>
+</html>

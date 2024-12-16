@@ -6,8 +6,8 @@ const CryptoController = {
     try {
       const cryptos = await Crypto.findAll({
         include: {
-          model: Money, // Inclui a relação com Money
-          as: "Money", // Certifique-se de usar o alias correto, se houver
+          model: Money,
+          as: "Money",
         },
       });
 
@@ -25,8 +25,8 @@ const CryptoController = {
     try {
       const cryptos = await Crypto.findByPk(req.params.id, {
         include: {
-          model: Money, // Inclui a relação com Money
-          as: "Money", // Certifique-se de usar o alias correto, se houver
+          model: Money,
+          as: "Money",
         },
       });
 
@@ -46,9 +46,9 @@ const CryptoController = {
     try {
       const crypto = await Crypto.findOne({
         include: {
-          model: Money, // Inclui o modelo relacionado
+          model: Money,
           where: {
-            abbreviation: req.params.abbreviation, // Filtra pelo campo abbreviation
+            abbreviation: req.params.abbreviation,
           },
         },
       });
@@ -140,10 +140,3 @@ const CryptoController = {
 };
 
 export default CryptoController;
-/*
-try {
-    } catch (err) {
-      res
-        .status(500)
-        .json({ message: "Error on creation of the crypto", err: err });
-    } */

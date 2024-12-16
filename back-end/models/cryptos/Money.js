@@ -61,7 +61,6 @@ Money.init(
   }
 );
 
-// Relações
 Money.belongsTo(Crypto, { foreignKey: "cryptoId", constraints: false });
 Money.belongsTo(RealMoney, { foreignKey: "realMoneyId", constraints: false });
 Crypto.hasOne(Money, { foreignKey: "cryptoId" });

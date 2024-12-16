@@ -34,7 +34,6 @@ Transation.init(
   }
 );
 
-// Associações
 Transation.belongsTo(Money, {
   foreignKey: "moneyId",
   as: "money",
@@ -52,7 +51,7 @@ Transation.belongsTo(User, {
 
 Transation.belongsTo(User, {
   foreignKey: "receiverId",
-  as: "receiverUser", // Renomeando para evitar colisão
+  as: "receiverUser",
 });
 
 export default Transation;

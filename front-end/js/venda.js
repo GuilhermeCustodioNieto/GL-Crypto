@@ -16,7 +16,7 @@ function adicionarCriptos() {
   let moedas2 = document.querySelector(".moedas2");
 
   axios
-    .get("http://localhost:3000/money/")
+    .get("https://gl-crypto-api.onrender.com/money/")
     .then((response) => {
       response.data.forEach((element) => {
         moedas1.innerHTML += `<option class="opcao-select" value="${element.abbreviation}" >${element.abbreviation}</option>`;
@@ -33,7 +33,7 @@ adicionarCriptos();
 async function alterarValorCompra(idCryptoInput, idCryptoOutput, balance) {
   try {
     const response = await axios.post(
-      "http://localhost:3000/transation/convert",
+      "https://gl-crypto-api.onrender.com/transation/convert",
       {
         idMoneyInput: idCryptoInput,
         idMoneyOutput: idCryptoOutput,
@@ -69,7 +69,7 @@ document
 async function buscarCryptoId(abbreviation) {
   try {
     const response = await axios.get(
-      `http://localhost:3000/money/abbreviation/${abbreviation}`
+      `https://gl-crypto-api.onrender.com/money/abbreviation/${abbreviation}`
     );
     return response.data.id;
   } catch (error) {
@@ -112,7 +112,7 @@ function fazerTransacao() {
 
       // Enviando os dados
       await axios.post(
-        "http://localhost:3000/transation/sell",
+        "https://gl-crypto-api.onrender.com/transation/sell",
         {
           ...dataRequest,
           userId,

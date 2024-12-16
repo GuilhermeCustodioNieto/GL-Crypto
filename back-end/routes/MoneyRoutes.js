@@ -6,6 +6,13 @@ import RealMoneyController from "../controllers/money/RealMoneyController.js";
 
 /**
  * @swagger
+ * tags:
+ *   name: Money
+ *   description: Operações para manipulação de moedas gerais, moedas reais e criptomoedas
+ */
+
+/**
+ * @swagger
  * /money/cryptos:
  *   get:
  *     tags: [Money]
@@ -41,6 +48,27 @@ MoneyRoutes.get("/cryptos", CryptoController.getAllCryptos);
  */
 MoneyRoutes.get("/cryptos/:id", CryptoController.getById);
 
+/**
+ * @swagger
+ * /money/cryptos/abbreviation/{abbreviation}:
+ *   get:
+ *     tags: [Money]
+ *     summary: Retorna dados da criptomoeda pela abreviação
+ *     parameters:
+ *       - name: abbreviation
+ *         in: path
+ *         required: true
+ *         description: Abreviação da criptomoeda
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Criptomoeda encontrada
+ *       404:
+ *         description: Criptomoeda não encontrada
+ *       500:
+ *         description: Erro inesperado ocorreu no sistema
+ */
 MoneyRoutes.get(
   "/cryptos/abbreviation/:abbreviation",
   CryptoController.getByAbbreviation
@@ -177,6 +205,27 @@ MoneyRoutes.get("/realMoney", RealMoneyController.getAllRealMoney);
  */
 MoneyRoutes.get("/realMoney/:id", RealMoneyController.getById);
 
+/**
+ * @swagger
+ * /money/realMoney/abbreviation/{abbreviation}:
+ *   get:
+ *     tags: [Money]
+ *     summary: Retorna dados do dinheiro real pela abreviação
+ *     parameters:
+ *       - name: abbreviation
+ *         in: path
+ *         required: true
+ *         description: Abreviação do dinheiro real
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Dinheiro real encontrado
+ *       404:
+ *         description: Dinheiro real não encontrado
+ *       500:
+ *         description: Erro inesperado ocorreu no sistema
+ */
 MoneyRoutes.get(
   "/realMoney/abbreviation/:abbreviation",
   RealMoneyController.getByAbbreviation
@@ -281,7 +330,7 @@ MoneyRoutes.delete("/realMoney/:id", RealMoneyController.deleteRealMoney);
  * /money:
  *   get:
  *     tags: [Money]
- *     summary: Retorna os dados de todas as moneys
+ *     summary: Retorna todos os dados de money
  *     responses:
  *       200:
  *         description: Busca realizada com sucesso
@@ -295,24 +344,45 @@ MoneyRoutes.get("/", MoneyController.getAllMoney);
  * /money/{id}:
  *   get:
  *     tags: [Money]
- *     summary: Retorna um item de dinheiro pelo ID
+ *     summary: Retorna um item de money pelo ID
  *     parameters:
  *       - name: id
  *         in: path
  *         required: true
- *         description: ID do item de dinheiro
+ *         description: ID do item de money
  *         schema:
  *           type: string
  *     responses:
  *       200:
- *         description: Item de dinheiro encontrado
+ *         description: Item de money encontrado
  *       404:
- *         description: Item de dinheiro não encontrado
+ *         description: Item de money não encontrado
  *       500:
  *         description: Erro inesperado ocorreu no sistema
  */
 MoneyRoutes.get("/:id", MoneyController.getById);
 
+/**
+ * @swagger
+ * /money/abbreviation/{abbreviation}:
+ *   get:
+ *     tags: [Money]
+ *     summary: Retorna um item de money pela abreviação
+ *     parameters:
+ *       - name: abbreviation
+ *         in: path
+ *         required: true
+ *         description: Abreviação do item de money
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Item de money encontrado
+ *       404:
+ *         description: Item de money não encontrado
+ *       500:
+ *         description: Erro inesperado ocorreu no sistema
+ */
 MoneyRoutes.get(
   "/abbreviation/:abbreviation",
   MoneyController.getByAbbreviation

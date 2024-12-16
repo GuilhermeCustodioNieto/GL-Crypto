@@ -143,7 +143,10 @@ function initializePage3Events() {
 
     // Envia os dados para a API
     axios
-      .post("http://localhost:3000/auth/user/register", dataRequest)
+      .post(
+        "https://gl-crypto-api.onrender.com/auth/user/register",
+        dataRequest
+      )
       .then((response) => {
         Swal.fire({
           title: "Registro realizado com sucesso!",

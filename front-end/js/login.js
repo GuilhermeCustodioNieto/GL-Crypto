@@ -10,7 +10,7 @@ form.addEventListener("submit", (event) => {
   });
 
   axios
-    .post("http://localhost:3000/auth/user/login", dataRequest)
+    .post("https://gl-crypto-api.onrender.com/auth/user/login", dataRequest)
     .then((response) => {
       console.log("Resposta da API:", response.data.returnData);
       localStorage.setItem("jwtToken", response.data.returnData.token);

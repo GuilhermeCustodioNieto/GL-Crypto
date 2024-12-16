@@ -15,7 +15,7 @@ function adicionarCriptos() {
   let moedas = document.querySelector("#moeda-pagar");
 
   axios
-    .get("http://localhost:3000/money/realMoney/")
+    .get("https://gl-crypto-api.onrender.com/money/realMoney/")
     .then((response) => {
       response.data.forEach((element) => {
         console.log(element);
@@ -33,7 +33,7 @@ adicionarCriptos();
 async function buscarCryptoId(abbreviation) {
   try {
     const response = await axios.get(
-      `http://localhost:3000/money/realMoney/abbreviation/${abbreviation}`
+      `https://gl-crypto-api.onrender.com/money/realMoney/abbreviation/${abbreviation}`
     );
     console.log(response.data.Money.id);
 
@@ -73,7 +73,7 @@ form.addEventListener("submit", async (event) => {
 
     // Enviando os dados
     await axios.post(
-      "http://localhost:3000/transation/deposit",
+      "https://gl-crypto-api.onrender.com/transation/deposit",
       {
         ...dataRequest,
         userId,

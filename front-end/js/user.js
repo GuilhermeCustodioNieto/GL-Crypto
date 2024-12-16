@@ -14,7 +14,7 @@ if (!token || token == "") {
 let dataUser = null;
 
 const user = axios
-  .get(`http://localhost:3000/users/getAllData/${userId}`, {
+  .get(`https://gl-crypto-api.onrender.com/users/getAllData/${userId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
@@ -64,7 +64,7 @@ function formatarDados() {
     async function buscarCryptoId(abbreviation) {
       try {
         const response = await axios.get(
-          `http://localhost:3000/money/abbreviation/${abbreviation}`
+          `https://gl-crypto-api.onrender.com/money/abbreviation/${abbreviation}`
         );
         return response.data.id;
       } catch (error) {
@@ -83,7 +83,7 @@ function formatarDados() {
         });
 
         const response = await axios.post(
-          "http://localhost:3000/transation/convert",
+          "https://gl-crypto-api.onrender.com/transation/convert",
           {
             idMoneyInput: idCryptoInput,
             idMoneyOutput: idCryptoOutput,

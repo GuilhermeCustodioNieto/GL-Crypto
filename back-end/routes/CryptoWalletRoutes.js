@@ -7,7 +7,7 @@ const CryptoWalletRoutes = express.Router();
  * @swagger
  * tags:
  *   name: CryptoWallet
- *   description: Rota de gerenciamento de carteira específica para o Money
+ *   description: Gerenciamento de carteiras de criptomoedas
  */
 
 /**
@@ -15,12 +15,12 @@ const CryptoWalletRoutes = express.Router();
  * /crypto-wallet:
  *   get:
  *     tags: [CryptoWallet]
- *     summary: Retorna todos os registros de carteiras de criptomoedas
+ *     summary: Retorna todas as carteiras de criptomoedas
  *     responses:
  *       200:
- *         description: Busca realizada com sucesso
+ *         description: Lista de carteiras de criptomoedas recuperada com sucesso
  *       500:
- *         description: Erro inesperado ocorreu no sistema
+ *         description: Erro inesperado no servidor
  */
 CryptoWalletRoutes.get("/", CryptoWalletController.findAll);
 
@@ -29,7 +29,7 @@ CryptoWalletRoutes.get("/", CryptoWalletController.findAll);
  * /crypto-wallet/{id}:
  *   get:
  *     tags: [CryptoWallet]
- *     summary: Retorna uma carteira de criptomoedas pelo ID
+ *     summary: Retorna uma carteira de criptomoedas específica pelo ID
  *     parameters:
  *       - name: id
  *         in: path
@@ -39,11 +39,11 @@ CryptoWalletRoutes.get("/", CryptoWalletController.findAll);
  *           type: string
  *     responses:
  *       200:
- *         description: Carteira de criptomoedas encontrada
+ *         description: Carteira de criptomoedas encontrada com sucesso
  *       404:
  *         description: Carteira de criptomoedas não encontrada
  *       500:
- *         description: Erro inesperado ocorreu no sistema
+ *         description: Erro inesperado no servidor
  */
 CryptoWalletRoutes.get("/:id", userMiddleware, CryptoWalletController.findById);
 
@@ -52,7 +52,7 @@ CryptoWalletRoutes.get("/:id", userMiddleware, CryptoWalletController.findById);
  * /crypto-wallet:
  *   post:
  *     tags: [CryptoWallet]
- *     summary: Cria uma nova carteira de criptomoedas na carteira geral descrita. Necessário que a carteira geral exista.
+ *     summary: Cria uma nova carteira de criptomoedas
  *     requestBody:
  *       required: true
  *       content:

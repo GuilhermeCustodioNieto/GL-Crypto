@@ -1,5 +1,5 @@
 async function getList() {
-  const response = await axios.get("http://localhost:3000/money/");
+  const response = await axios.get("https://gl-crypto-api.onrender.com/money/");
 
   return response.data;
 }

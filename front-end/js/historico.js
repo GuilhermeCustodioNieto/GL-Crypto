@@ -13,7 +13,7 @@ if (!token || token == "") {
 
 async function getHistory() {
   const response = await axios.get(
-    "http://localhost:3000/transation/get-history"
+    "https://gl-crypto-api.onrender.com/transation/get-history"
   );
 
   return response.data;

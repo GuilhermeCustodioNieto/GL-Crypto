@@ -102,13 +102,13 @@ cd gl-crypto
    ```
 3. Crie o arquivo `.env` com as variáveis de ambiente:
    ```env
-DB_NAME=nome do seu banco de dados
-DB_USER=nome do seu usuário do banco
-DB_PASSWORD=sua senha
-DB_HOST=seu host
-DB_DIALECT=tipo do seu banco de dados
-URL_CONVERSOR=sua url de API externa para conversão de moedas
-API_KEY_CONVERSOR=a key da API
+    DB_NAME=nome do seu banco de dados
+    DB_USER=nome do seu usuário do banco
+    DB_PASSWORD=sua senha
+    DB_HOST=seu host
+    DB_DIALECT=tipo do seu banco de dados
+    URL_CONVERSOR=sua url de API externa para conversão de moedas
+    API_KEY_CONVERSOR=a key da API
    ```
 1. Inicie o servidor:
    ```bash

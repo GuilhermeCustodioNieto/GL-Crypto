@@ -60,10 +60,12 @@ gl-crypto/
 
 #### Imagens dos Diagramas
 - Diagrama de Classes
-![[Extra\class diagram.png]]
+
+<img src="Extra\class diagram.png" alt="Diagrama de Classes">
 
 - Diagrama de Atividade
-![[Extra\UML.png]]
+
+<img src="Extra\UML.png" alt="Diagrama de Atividade">
 
 ---
 
